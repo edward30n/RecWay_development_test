@@ -1,19 +1,19 @@
--- Script de inicialización de la base de datos RecWay v2.0
--- Nota: La base de datos debe estar creada previamente
+-- Script de inicialización DEFINITIVO para RecWay v2.0
+-- Este archivo se ejecuta automáticamente cuando Docker inicia PostgreSQL
 
--- ELIMINACIÓN DE TABLAS EN ORDEN CORRECTO PARA EVITAR ERRORES (OPCIONAL)
--- DROP TABLE IF EXISTS registro_sensores;
--- DROP TABLE IF EXISTS indices_muestra;
--- DROP TABLE IF EXISTS huecoMuestra;
--- DROP TABLE IF EXISTS muestra;
--- DROP TABLE IF EXISTS huecoSegmento;
--- DROP TABLE IF EXISTS indicesSegmento;
--- DROP TABLE IF EXISTS geometria;
--- DROP TABLE IF EXISTS segmento;
--- DROP TABLE IF EXISTS fuente_datos_dispositivo;
+-- ELIMINACIÓN DE TABLAS EN ORDEN CORRECTO
+DROP TABLE IF EXISTS registro_sensores CASCADE;
+DROP TABLE IF EXISTS indices_muestra CASCADE;
+DROP TABLE IF EXISTS huecoMuestra CASCADE;
+DROP TABLE IF EXISTS muestra CASCADE;
+DROP TABLE IF EXISTS huecoSegmento CASCADE;
+DROP TABLE IF EXISTS indicesSegmento CASCADE;
+DROP TABLE IF EXISTS geometria CASCADE;
+DROP TABLE IF EXISTS segmento CASCADE;
+DROP TABLE IF EXISTS fuente_datos_dispositivo CASCADE;
 
 -- TABLA PRINCIPAL: SEGMENTO
-CREATE TABLE IF NOT EXISTS segmento (
+CREATE TABLE segmento (
     id_segmento bigserial PRIMARY KEY,
     nombre varchar(50) NOT NULL,
     tipo varchar(50),
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS segmento (
 );
 
 -- GEOMETRÍA DEL SEGMENTO
-CREATE TABLE IF NOT EXISTS geometria (
+CREATE TABLE geometria (
     id_geometria bigserial PRIMARY KEY,
     orden integer NOT NULL,
     coordenada_x double precision NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS geometria (
 );
 
 -- ÍNDICES CALCULADOS DEL SEGMENTO
-CREATE TABLE IF NOT EXISTS indicesSegmento (
+CREATE TABLE indicesSegmento (
     id_indice_segmento bigserial PRIMARY KEY,
     nota_general double precision NOT NULL,
     iri_modificado double precision NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS indicesSegmento (
 );
 
 -- HUECOS ASOCIADOS AL SEGMENTO
-CREATE TABLE IF NOT EXISTS huecoSegmento (
+CREATE TABLE huecoSegmento (
     id_hueco_segmento bigserial PRIMARY KEY,
     latitud double precision NOT NULL,
     longitud double precision NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS huecoSegmento (
 );
 
 -- MUESTRAS (GRABACIONES DE UN USUARIO EN UN SEGMENTO)
-CREATE TABLE IF NOT EXISTS muestra (
+CREATE TABLE muestra (
     id_muestra bigserial PRIMARY KEY,
     tipo_dispositivo varchar(30),
     identificador_dispositivo varchar(60),
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS muestra (
 );
 
 -- ÍNDICES CALCULADOS POR MUESTRA
-CREATE TABLE IF NOT EXISTS indices_muestra (
+CREATE TABLE indices_muestra (
     id_indice_muestra bigserial PRIMARY KEY,
     nota_general double precision NOT NULL,
     iri_modificado double precision NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS indices_muestra (
 );
 
 -- HUECOS INDIVIDUALIZADOS POR MUESTRA
-CREATE TABLE IF NOT EXISTS huecoMuestra (
+CREATE TABLE huecoMuestra (
     id_hueco_muestra bigserial PRIMARY KEY,
     latitud double precision NOT NULL,
     longitud double precision NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS huecoMuestra (
 );
 
 -- METAINFORMACIÓN DEL DISPOSITIVO QUE ENVÍA LA INFORMACIÓN
-CREATE TABLE IF NOT EXISTS fuente_datos_dispositivo (
+CREATE TABLE fuente_datos_dispositivo (
     id_fuente bigserial PRIMARY KEY,
     device_id varchar(100),
     session_id varchar(100),
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS fuente_datos_dispositivo (
 );
 
 -- REGISTRO DETALLADO DE CADA MUESTRA DE SENSOR
-CREATE TABLE IF NOT EXISTS registro_sensores (
+CREATE TABLE registro_sensores (
     id_registro bigserial PRIMARY KEY,
     timestamp bigint NOT NULL,
     acc_x double precision,
@@ -158,16 +158,16 @@ CREATE TABLE IF NOT EXISTS registro_sensores (
 );
 
 -- CREAR ÍNDICES PARA MEJORAR EL RENDIMIENTO
-CREATE INDEX IF NOT EXISTS idx_geometria_segmento ON geometria(id_segmento_seleccionado);
-CREATE INDEX IF NOT EXISTS idx_geometria_orden ON geometria(orden);
-CREATE INDEX IF NOT EXISTS idx_indices_segmento ON indicesSegmento(id_segmento_seleccionado);
-CREATE INDEX IF NOT EXISTS idx_hueco_segmento ON huecoSegmento(id_segmento_seleccionado);
-CREATE INDEX IF NOT EXISTS idx_muestra_segmento ON muestra(id_segmento_seleccionado);
-CREATE INDEX IF NOT EXISTS idx_indices_muestra ON indices_muestra(id_muestra);
-CREATE INDEX IF NOT EXISTS idx_hueco_muestra ON huecoMuestra(id_muestra_seleccionada);
-CREATE INDEX IF NOT EXISTS idx_registro_fuente ON registro_sensores(id_fuente);
-CREATE INDEX IF NOT EXISTS idx_registro_timestamp ON registro_sensores(timestamp);
-CREATE INDEX IF NOT EXISTS idx_registro_gps ON registro_sensores(gps_lat, gps_lng);
+CREATE INDEX idx_geometria_segmento ON geometria(id_segmento_seleccionado);
+CREATE INDEX idx_geometria_orden ON geometria(orden);
+CREATE INDEX idx_indices_segmento ON indicesSegmento(id_segmento_seleccionado);
+CREATE INDEX idx_hueco_segmento ON huecoSegmento(id_segmento_seleccionado);
+CREATE INDEX idx_muestra_segmento ON muestra(id_segmento_seleccionado);
+CREATE INDEX idx_indices_muestra ON indices_muestra(id_muestra);
+CREATE INDEX idx_hueco_muestra ON huecoMuestra(id_muestra_seleccionada);
+CREATE INDEX idx_registro_fuente ON registro_sensores(id_fuente);
+CREATE INDEX idx_registro_timestamp ON registro_sensores(timestamp);
+CREATE INDEX idx_registro_gps ON registro_sensores(gps_lat, gps_lng);
 
 -- COMENTARIOS PARA DOCUMENTACIÓN
 COMMENT ON TABLE segmento IS 'Tabla principal de segmentos de carretera con información geográfica y características';
@@ -179,3 +179,6 @@ COMMENT ON TABLE indices_muestra IS 'Índices de calidad calculados para cada mu
 COMMENT ON TABLE huecoMuestra IS 'Huecos individuales detectados en cada muestra';
 COMMENT ON TABLE fuente_datos_dispositivo IS 'Metainformación de dispositivos que recolectan datos';
 COMMENT ON TABLE registro_sensores IS 'Registros detallados de sensores (acelerómetro, giroscopio, GPS) por dispositivo';
+
+-- Mensaje de confirmación
+SELECT 'Database RecWay initialized successfully with all 9 tables!' as status;
