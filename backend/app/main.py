@@ -1,10 +1,12 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.api import api_router
 from app.core.config import settings
 from app.db.database import database
-from app.api.api import api_router
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -36,20 +38,22 @@ app.add_middleware(
 # Incluir los routers
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
+
 @app.get("/")
 async def root():
     """Endpoint de salud de la API"""
     return {
-        "message": f"{settings.PROJECT_NAME} está funcionando correctamente", 
+        "message": f"{settings.PROJECT_NAME} está funcionando correctamente",
         "version": "1.0.0",
         "docs_url": f"{settings.API_V1_STR}/docs"
     }
+
 
 @app.get("/health")
 async def health_check():
     """Endpoint para verificar el estado de la aplicación"""
     return {
-        "status": "healthy", 
+        "status": "healthy",
         "app": settings.PROJECT_NAME,
         "version": "1.0.0"
     }

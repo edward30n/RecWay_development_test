@@ -1,10 +1,13 @@
-from fastapi import APIRouter, HTTPException
 from typing import List
-from app.schemas.segmentos import SegmentoCreate, Segmento
-from app.schemas.responses import GeoJSONFeatureCollection, SegmentoCompleto
+
+from fastapi import APIRouter, HTTPException
+
+from app.schemas.responses import GeoJSONFeatureCollection
+from app.schemas.segmentos import Segmento, SegmentoCreate
 from app.services.segmentos_service import segmento_service
 
 router = APIRouter(prefix="/segmentos", tags=["Segmentos"])
+
 
 @router.get("/", response_model=List[Segmento])
 async def get_all_segmentos():
@@ -13,6 +16,7 @@ async def get_all_segmentos():
         return await segmento_service.get_all_segmentos()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener segmentos: {str(e)}")
+
 
 @router.get("/{id_segmento}", response_model=Segmento)
 async def get_segmento(id_segmento: int):
@@ -27,6 +31,7 @@ async def get_segmento(id_segmento: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener segmento: {str(e)}")
 
+
 @router.post("/", response_model=Segmento)
 async def create_segmento(segmento: SegmentoCreate):
     """Crear un nuevo segmento de carretera"""
@@ -34,6 +39,7 @@ async def create_segmento(segmento: SegmentoCreate):
         return await segmento_service.create_segmento(segmento)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear segmento: {str(e)}")
+
 
 @router.get("/geojson/all", response_model=GeoJSONFeatureCollection)
 async def get_segmentos_geojson():
@@ -43,6 +49,7 @@ async def get_segmentos_geojson():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener datos GeoJSON: {str(e)}")
 
+
 @router.get("/{id_segmento}/geometrias")
 async def get_geometrias_segmento(id_segmento: int):
     """Obtener las geometrías (puntos) que definen un segmento"""
@@ -51,6 +58,7 @@ async def get_geometrias_segmento(id_segmento: int):
         return {"segmento_id": id_segmento, "geometrias": geometrias}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener geometrías: {str(e)}")
+
 
 @router.get("/{id_segmento}/indices")
 async def get_indices_segmento(id_segmento: int):
@@ -64,6 +72,7 @@ async def get_indices_segmento(id_segmento: int):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener índices: {str(e)}")
+
 
 @router.get("/{id_segmento}/huecos")
 async def get_huecos_segmento(id_segmento: int):

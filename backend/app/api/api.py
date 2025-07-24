@@ -1,5 +1,6 @@
 from fastapi import APIRouter
-from app.api.endpoints import segmentos, muestras, sensores
+
+from app.api.endpoints import muestras, segmentos, sensores
 
 api_router = APIRouter()
 
@@ -9,6 +10,8 @@ api_router.include_router(muestras.router)
 api_router.include_router(sensores.router)
 
 # Endpoint de información de la API actualizado
+
+
 @api_router.get("/info")
 async def api_info():
     """Información completa sobre los endpoints disponibles de la API RecWay"""
@@ -56,14 +59,17 @@ async def api_info():
     }
 
 # Endpoint de compatibilidad para procesos legacy
+
+
 @api_router.post("/process")
 async def process_legacy():
     """Endpoint de compatibilidad para procesos heredados"""
     return {
-        "status": "ok", 
+        "status": "ok",
         "message": "Endpoint de compatibilidad. Use los nuevos endpoints específicos.",
         "redirect_to": "/api/v1/info"
     }
+
 
 @api_router.get("/process")
 async def get_process_legacy():
