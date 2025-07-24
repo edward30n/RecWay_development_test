@@ -2,9 +2,9 @@ from typing import List
 
 from fastapi import APIRouter, HTTPException
 
-from app.schemas.muestra import Muestra, MuestraCreate
+from app.schemas.muestras import Muestra, MuestraCreate
 from app.schemas.responses import GeoJSONFeatureCollection, MuestraCompleta
-from app.schemas.segmento import Segmento, SegmentoCreate
+from app.schemas.segmentos import Segmento, SegmentoCreate
 from app.services.muestra_service import muestra_service
 from app.services.segmento_service import segmento_service
 

@@ -7,7 +7,7 @@ from app.schemas.responses import (
     GeoJSONGeometry,
     GeoJSONProperties,
 )
-from app.schemas.segmento import Segmento, SegmentoCreate
+from app.schemas.segmentos import Segmento, SegmentoCreate
 
 
 class SegmentoService:

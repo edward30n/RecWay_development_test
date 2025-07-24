@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException
 
 from app.schemas.responses import GeoJSONFeatureCollection
 from app.schemas.segmentos import Segmento, SegmentoCreate
-from app.services.segmentos_service import segmento_service
+from app.services.segmento_service import segmento_service
 
 router = APIRouter(prefix="/segmentos", tags=["Segmentos"])
 

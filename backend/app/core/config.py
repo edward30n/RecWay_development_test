@@ -48,8 +48,8 @@ class Settings:
     def database_url(self) -> str:
         """URL de conexión a la base de datos"""
         return (
-            f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
-            f"@{self.POSTGRES_SERVER}/{self.POSTGRES_DB}"
+            f"postgresql://{self.postgres_user}:{self.postgres_password}"
+            f"@{self.postgres_server}:{self.postgres_port}/{self.postgres_db}"
         )
 
     @property
