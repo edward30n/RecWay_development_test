@@ -22,6 +22,7 @@ class Muestra(MuestraBase):
     class Config:
         from_attributes = True
 
+
 # Modelos para Índices de Muestra (tabla actualizada)
 
 
@@ -44,6 +45,7 @@ class IndicesMuestra(IndicesMuestraBase):
 
     class Config:
         from_attributes = True
+
 
 # Modelos para Huecos de Muestra
 

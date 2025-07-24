@@ -24,8 +24,7 @@ class MuestraService:
         """Obtener todas las muestras de un segmento"""
         async with database.get_connection() as conn:
             rows = await conn.fetch(
-                "SELECT * FROM muestra WHERE id_segmento_seleccionado = $1 ORDER BY id_muestra",
-                id_segmento
+                "SELECT * FROM muestra WHERE id_segmento_seleccionado = $1 ORDER BY id_muestra", id_segmento
             )
             return [Muestra(**dict(row)) for row in rows]
 
@@ -39,27 +38,23 @@ class MuestraService:
             """
             row = await conn.fetchrow(
                 query,
-                muestra.tipo_dispositivo, muestra.identificador_dispositivo,
-                muestra.fecha_muestra, muestra.id_segmento_seleccionado
+                muestra.tipo_dispositivo,
+                muestra.identificador_dispositivo,
+                muestra.fecha_muestra,
+                muestra.id_segmento_seleccionado,
             )
             return Muestra(**dict(row))
 
     async def get_indices_by_muestra(self, id_muestra: int):
         """Obtener los índices de una muestra (tabla actualizada)"""
         async with database.get_connection() as conn:
-            row = await conn.fetchrow(
-                "SELECT * FROM indices_muestra WHERE id_muestra = $1",
-                id_muestra
-            )
+            row = await conn.fetchrow("SELECT * FROM indices_muestra WHERE id_muestra = $1", id_muestra)
             return dict(row) if row else None
 
     async def get_huecos_by_muestra(self, id_muestra: int):
         """Obtener los huecos de una muestra"""
         async with database.get_connection() as conn:
-            rows = await conn.fetch(
-                "SELECT * FROM huecoMuestra WHERE id_muestra_seleccionada = $1",
-                id_muestra
-            )
+            rows = await conn.fetch("SELECT * FROM huecoMuestra WHERE id_muestra_seleccionada = $1", id_muestra)
             return [dict(row) for row in rows]
 
     async def get_muestra_completa(self, id_muestra: int) -> Optional[MuestraCompleta]:
@@ -71,11 +66,7 @@ class MuestraService:
         indices = await self.get_indices_by_muestra(id_muestra)
         huecos = await self.get_huecos_by_muestra(id_muestra)
 
-        return MuestraCompleta(
-            muestra=muestra,
-            indices=indices,
-            huecos=huecos
-        )
+        return MuestraCompleta(muestra=muestra, indices=indices, huecos=huecos)
 
 
 # Instancia del servicio

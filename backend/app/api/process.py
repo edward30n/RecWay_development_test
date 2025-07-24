@@ -53,6 +53,7 @@ async def get_segmentos_geojson():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener datos GeoJSON: {str(e)}")
 
+
 # Endpoints para Muestras
 
 
@@ -95,6 +96,7 @@ async def create_muestra(muestra: MuestraCreate):
         return await muestra_service.create_muestra(muestra)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear muestra: {str(e)}")
+
 
 # Endpoints de compatibilidad (manteniendo tu estructura original)
 

@@ -37,6 +37,7 @@ class GeoJSONFeatureCollection(BaseModel):
     type: str = "FeatureCollection"
     features: List[GeoJSONFeature]
 
+
 # Modelo para respuesta completa de segmento con todos sus datos relacionados
 
 
@@ -47,6 +48,7 @@ class SegmentoCompleto(BaseModel):
     huecos: List[HuecoSegmento]
     muestras: List[Muestra]
 
+
 # Modelo para respuesta completa de muestra con todos sus datos relacionados
 
 
@@ -55,12 +57,14 @@ class MuestraCompleta(BaseModel):
     indices: Optional[IndicesMuestra] = None
     huecos: List[HuecoMuestra]
 
+
 # Modelo para respuesta completa de datos de sensores
 
 
 class DatosSensoresCompletos(BaseModel):
     fuente: FuenteDatosDispositivo
     registros: List[RegistroSensores]
+
 
 # Modelo de respuesta estándar para operaciones
 

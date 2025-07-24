@@ -42,13 +42,13 @@ async def create_fuente(fuente: FuenteDatosDispositivoCreate):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear fuente: {str(e)}")
 
+
 # Endpoints para Registros de Sensores
 
 
 @router.get("/registros/fuente/{id_fuente}", response_model=List[RegistroSensores])
 async def get_registros_by_fuente(
-    id_fuente: int,
-    limit: Optional[int] = Query(1000, description="Número máximo de registros a retornar")
+    id_fuente: int, limit: Optional[int] = Query(1000, description="Número máximo de registros a retornar")
 ):
     """Obtener registros de sensores de una fuente específica"""
     try:
@@ -79,6 +79,7 @@ async def get_datos_completos(id_fuente: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener datos completos: {str(e)}")
 
+
 # Endpoint para bulk insert de registros (útil para importación masiva)
 
 
@@ -94,7 +95,7 @@ async def create_registros_bulk(registros: List[RegistroSensoresCreate]):
         return {
             "success": True,
             "message": f"Se crearon {len(created_registros)} registros exitosamente",
-            "count": len(created_registros)
+            "count": len(created_registros),
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear registros en bulk: {str(e)}")

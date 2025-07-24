@@ -6,6 +6,7 @@ env_file = Path(__file__).parent.parent.parent / ".env"
 if env_file.exists():
     try:
         from dotenv import load_dotenv
+
         load_dotenv(env_file)
     except ImportError:
         # Si no está instalado python-dotenv, solo usar variables de entorno del sistema

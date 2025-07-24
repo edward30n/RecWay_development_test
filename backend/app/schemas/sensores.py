@@ -41,6 +41,7 @@ class FuenteDatosDispositivo(FuenteDatosDispositivoBase):
     class Config:
         from_attributes = True
 
+
 # Modelos para Registro de Sensores
 
 

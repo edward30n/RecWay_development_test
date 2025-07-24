@@ -35,12 +35,28 @@ class SensoresService:
             """
             row = await conn.fetchrow(
                 query,
-                fuente.device_id, fuente.session_id, fuente.platform, fuente.device_model,
-                fuente.manufacturer, fuente.brand, fuente.os_version, fuente.app_version,
-                fuente.company, fuente.android_id, fuente.battery_info, fuente.acc_available,
-                fuente.acc_info, fuente.gyro_available, fuente.gyro_info, fuente.gps_available,
-                fuente.gps_info, fuente.export_date, fuente.total_records, fuente.sampling_rate,
-                fuente.recording_duration, fuente.average_sample_rate
+                fuente.device_id,
+                fuente.session_id,
+                fuente.platform,
+                fuente.device_model,
+                fuente.manufacturer,
+                fuente.brand,
+                fuente.os_version,
+                fuente.app_version,
+                fuente.company,
+                fuente.android_id,
+                fuente.battery_info,
+                fuente.acc_available,
+                fuente.acc_info,
+                fuente.gyro_available,
+                fuente.gyro_info,
+                fuente.gps_available,
+                fuente.gps_info,
+                fuente.export_date,
+                fuente.total_records,
+                fuente.sampling_rate,
+                fuente.recording_duration,
+                fuente.average_sample_rate,
             )
             return FuenteDatosDispositivo(**dict(row))
 
@@ -48,8 +64,7 @@ class SensoresService:
         """Obtener registros de sensores por fuente de datos"""
         async with database.get_connection() as conn:
             rows = await conn.fetch(
-                "SELECT * FROM registro_sensores WHERE id_fuente = $1 ORDER BY timestamp LIMIT $2",
-                id_fuente, limit
+                "SELECT * FROM registro_sensores WHERE id_fuente = $1 ORDER BY timestamp LIMIT $2", id_fuente, limit
             )
             return [RegistroSensores(**dict(row)) for row in rows]
 
@@ -69,13 +84,30 @@ class SensoresService:
             """
             row = await conn.fetchrow(
                 query,
-                registro.timestamp, registro.acc_x, registro.acc_y, registro.acc_z,
-                registro.acc_magnitude, registro.gyro_x, registro.gyro_y, registro.gyro_z,
-                registro.gyro_magnitude, registro.gps_lat, registro.gps_lng, registro.gps_accuracy,
-                registro.gps_speed, registro.gps_speed_accuracy, registro.gps_altitude,
-                registro.gps_altitude_accuracy, registro.gps_heading, registro.gps_heading_accuracy,
-                registro.gps_timestamp, registro.gps_provider, registro.device_orientation,
-                registro.sample_rate, registro.gps_changed, registro.id_fuente
+                registro.timestamp,
+                registro.acc_x,
+                registro.acc_y,
+                registro.acc_z,
+                registro.acc_magnitude,
+                registro.gyro_x,
+                registro.gyro_y,
+                registro.gyro_z,
+                registro.gyro_magnitude,
+                registro.gps_lat,
+                registro.gps_lng,
+                registro.gps_accuracy,
+                registro.gps_speed,
+                registro.gps_speed_accuracy,
+                registro.gps_altitude,
+                registro.gps_altitude_accuracy,
+                registro.gps_heading,
+                registro.gps_heading_accuracy,
+                registro.gps_timestamp,
+                registro.gps_provider,
+                registro.device_orientation,
+                registro.sample_rate,
+                registro.gps_changed,
+                registro.id_fuente,
             )
             return RegistroSensores(**dict(row))
 
@@ -87,10 +119,7 @@ class SensoresService:
 
         registros = await self.get_registros_by_fuente(id_fuente)
 
-        return DatosSensoresCompletos(
-            fuente=fuente,
-            registros=registros
-        )
+        return DatosSensoresCompletos(fuente=fuente, registros=registros)
 
 
 # Instancia del servicio

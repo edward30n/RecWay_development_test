@@ -31,6 +31,7 @@ class Segmento(SegmentoBase):
     class Config:
         from_attributes = True
 
+
 # Modelos para Geometría (campos actualizados)
 
 
@@ -50,6 +51,7 @@ class Geometria(GeometriaBase):
 
     class Config:
         from_attributes = True
+
 
 # Modelos para Índices de Segmento
 
@@ -73,6 +75,7 @@ class IndicesSegmento(IndicesSegmentoBase):
 
     class Config:
         from_attributes = True
+
 
 # Modelos para Huecos de Segmento (con nuevos campos)
 

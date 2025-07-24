@@ -28,7 +28,7 @@ async def api_info():
                 "GET /segmentos/geojson/all": "Obtener segmentos en formato GeoJSON para mapas",
                 "GET /segmentos/{id}/geometrias": "Obtener puntos que definen un segmento",
                 "GET /segmentos/{id}/indices": "Obtener índices de calidad de un segmento",
-                "GET /segmentos/{id}/huecos": "Obtener huecos detectados en un segmento"
+                "GET /segmentos/{id}/huecos": "Obtener huecos detectados en un segmento",
             },
             "muestras": {
                 "GET /muestras/": "Obtener todas las muestras",
@@ -36,7 +36,7 @@ async def api_info():
                 "POST /muestras/": "Crear nueva muestra",
                 "GET /muestras/segmento/{id}": "Obtener muestras de un segmento específico",
                 "GET /muestras/{id}/indices": "Obtener índices de calidad de una muestra",
-                "GET /muestras/{id}/huecos": "Obtener huecos detectados en una muestra"
+                "GET /muestras/{id}/huecos": "Obtener huecos detectados en una muestra",
             },
             "sensores": {
                 "GET /sensores/fuentes": "Obtener todas las fuentes de datos de dispositivos",
@@ -45,8 +45,8 @@ async def api_info():
                 "GET /sensores/registros/fuente/{id}": "Obtener registros de sensores de una fuente",
                 "POST /sensores/registros": "Crear nuevo registro de sensores",
                 "POST /sensores/registros/bulk": "Crear múltiples registros de sensores",
-                "GET /sensores/completos/{id}": "Obtener datos completos de una fuente"
-            }
+                "GET /sensores/completos/{id}": "Obtener datos completos de una fuente",
+            },
         },
         "nuevas_caracteristicas": [
             "Gestión completa de datos de sensores (acelerómetro, giroscopio, GPS)",
@@ -54,9 +54,10 @@ async def api_info():
             "Estructura de base de datos optimizada",
             "Endpoints organizados por módulos",
             "Soporte para importación masiva de datos",
-            "Campos actualizados en segmentos (nodos X/Y, superficie, ancho, error GPS)"
-        ]
+            "Campos actualizados en segmentos (nodos X/Y, superficie, ancho, error GPS)",
+        ],
     }
+
 
 # Endpoint de compatibilidad para procesos legacy
 
@@ -67,7 +68,7 @@ async def process_legacy():
     return {
         "status": "ok",
         "message": "Endpoint de compatibilidad. Use los nuevos endpoints específicos.",
-        "redirect_to": "/api/v1/info"
+        "redirect_to": "/api/v1/info",
     }
 
 
@@ -77,5 +78,5 @@ async def get_process_legacy():
     return {
         "message": "Este endpoint ha sido movido",
         "new_endpoint": "/api/v1/segmentos/geojson/all",
-        "description": "Use el nuevo endpoint para obtener datos GeoJSON"
+        "description": "Use el nuevo endpoint para obtener datos GeoJSON",
     }
