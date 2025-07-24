@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  recway_db:
+    image: postgres:15-alpine
+    container_name: recway_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: recWay_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: edward123
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/app/db/init_complete.sql:/docker-entrypoint-initdb.d/01-init.sql
+    networks:
+      - recway_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d recWay_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend FastAPI
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: recway_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env.docker
+    volumes:
+      - ./backend:/app
+      - /app/venv  # Excluir el venv local
+    networks:
+      - recway_network
+    depends_on:
+      recway_db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    command: ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  # Adminer para administrar PostgreSQL (opcional)
+  adminer:
+    image: adminer:latest
+    container_name: recway_adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - recway_network
+    depends_on:
+      - recway_db
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  recway_network:
+    driver: bridge
