@@ -1,14 +1,18 @@
-from fastapi import APIRouter, HTTPException
 from typing import List
-from app.schemas.segmento import SegmentoCreate, Segmento
-from app.schemas.muestra import MuestraCreate, Muestra
-from app.schemas.responses import GeoJSONFeatureCollection, SegmentoCompleto, MuestraCompleta
-from app.services.segmento_service import segmento_service
+
+from fastapi import APIRouter, HTTPException
+
+from app.schemas.muestras import Muestra, MuestraCreate
+from app.schemas.responses import GeoJSONFeatureCollection, MuestraCompleta
+from app.schemas.segmentos import Segmento, SegmentoCreate
 from app.services.muestra_service import muestra_service
+from app.services.segmento_service import segmento_service
 
 router = APIRouter()
 
 # Endpoints para Segmentos
+
+
 @router.get("/segmentos", response_model=List[Segmento])
 async def get_all_segmentos():
     """Obtener todos los segmentos"""
@@ -16,6 +20,7 @@ async def get_all_segmentos():
         return await segmento_service.get_all_segmentos()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener segmentos: {str(e)}")
+
 
 @router.get("/segmentos/{id_segmento}", response_model=Segmento)
 async def get_segmento(id_segmento: float):
@@ -30,6 +35,7 @@ async def get_segmento(id_segmento: float):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener segmento: {str(e)}")
 
+
 @router.post("/segmentos", response_model=Segmento)
 async def create_segmento(segmento: SegmentoCreate):
     """Crear un nuevo segmento"""
@@ -37,6 +43,7 @@ async def create_segmento(segmento: SegmentoCreate):
         return await segmento_service.create_segmento(segmento)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear segmento: {str(e)}")
+
 
 @router.get("/segmentos/geojson", response_model=GeoJSONFeatureCollection)
 async def get_segmentos_geojson():
@@ -47,6 +54,8 @@ async def get_segmentos_geojson():
         raise HTTPException(status_code=500, detail=f"Error al obtener datos GeoJSON: {str(e)}")
 
 # Endpoints para Muestras
+
+
 @router.get("/muestras", response_model=List[Muestra])
 async def get_all_muestras():
     """Obtener todas las muestras"""
@@ -54,6 +63,7 @@ async def get_all_muestras():
         return await muestra_service.get_all_muestras()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener muestras: {str(e)}")
+
 
 @router.get("/muestras/{id_muestra}", response_model=MuestraCompleta)
 async def get_muestra_completa(id_muestra: int):
@@ -68,6 +78,7 @@ async def get_muestra_completa(id_muestra: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener muestra: {str(e)}")
 
+
 @router.get("/segmentos/{id_segmento}/muestras", response_model=List[Muestra])
 async def get_muestras_by_segmento(id_segmento: float):
     """Obtener todas las muestras de un segmento específico"""
@@ -75,6 +86,7 @@ async def get_muestras_by_segmento(id_segmento: float):
         return await muestra_service.get_muestras_by_segmento(id_segmento)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener muestras del segmento: {str(e)}")
+
 
 @router.post("/muestras", response_model=Muestra)
 async def create_muestra(muestra: MuestraCreate):
@@ -85,6 +97,8 @@ async def create_muestra(muestra: MuestraCreate):
         raise HTTPException(status_code=500, detail=f"Error al crear muestra: {str(e)}")
 
 # Endpoints de compatibilidad (manteniendo tu estructura original)
+
+
 @router.post("/process")
 async def process_data(payload: dict):
     """
@@ -97,6 +111,7 @@ async def process_data(payload: dict):
         return {"status": "ok", "message": "Datos procesados correctamente"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al procesar datos: {str(e)}")
+
 
 @router.get("/process")
 async def get_process_geojson():
