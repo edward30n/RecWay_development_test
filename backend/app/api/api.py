@@ -1,5 +1,6 @@
-from app.api.endpoints import muestras, segmentos, sensores
 from fastapi import APIRouter
+
+from app.api.endpoints import muestras, segmentos, sensores
 
 api_router = APIRouter()
 

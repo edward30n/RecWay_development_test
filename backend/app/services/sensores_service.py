@@ -2,12 +2,9 @@ from typing import List, Optional
 
 from app.db.database import database
 from app.schemas.responses import DatosSensoresCompletos
-from app.schemas.sensores import (
-    FuenteDatosDispositivo,
-    FuenteDatosDispositivoCreate,
-    RegistroSensores,
-    RegistroSensoresCreate,
-)
+from app.schemas.sensores import (FuenteDatosDispositivo,
+                                  FuenteDatosDispositivoCreate,
+                                  RegistroSensores, RegistroSensoresCreate)
 
 
 class SensoresService:

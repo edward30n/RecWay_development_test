@@ -4,17 +4,8 @@ Estos NO son necesarios con nuestro enfoque actual, pero pueden ser útiles
 para casos específicos donde queramos usar ORM en lugar de SQL raw.
 """
 
-from sqlalchemy import (
-    BigInteger,
-    Boolean,
-    Column,
-    DateTime,
-    Float,
-    ForeignKey,
-    Integer,
-    String,
-    Text,
-)
+from sqlalchemy import (BigInteger, Boolean, Column, DateTime, Float,
+                        ForeignKey, Integer, String, Text)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 

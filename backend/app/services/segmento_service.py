@@ -1,20 +1,12 @@
 from typing import List, Optional
 
 from app.db.database import database
-from app.schemas.responses import (
-    GeoJSONFeature,
-    GeoJSONFeatureCollection,
-    GeoJSONGeometry,
-    GeoJSONProperties,
-    SegmentoCompleto,
-)
-from app.schemas.segmento import (
-    GeometriaCreate,
-    HuecoSegmentoCreate,
-    IndicesSegmentoCreate,
-    Segmento,
-    SegmentoCreate,
-)
+from app.schemas.responses import (GeoJSONFeature, GeoJSONFeatureCollection,
+                                   GeoJSONGeometry, GeoJSONProperties,
+                                   SegmentoCompleto)
+from app.schemas.segmento import (GeometriaCreate, HuecoSegmentoCreate,
+                                  IndicesSegmentoCreate, Segmento,
+                                  SegmentoCreate)
 
 
 class SegmentoService:

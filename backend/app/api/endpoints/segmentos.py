@@ -1,9 +1,10 @@
 from typing import List
 
+from fastapi import APIRouter, HTTPException
+
 from app.schemas.responses import GeoJSONFeatureCollection, SegmentoCompleto
 from app.schemas.segmentos import Segmento, SegmentoCreate
 from app.services.segmentos_service import segmento_service
-from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/segmentos", tags=["Segmentos"])
 

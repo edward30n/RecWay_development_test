@@ -1,15 +1,13 @@
 from typing import List
 
+from fastapi import APIRouter, HTTPException
+
 from app.schemas.muestra import Muestra, MuestraCreate
-from app.schemas.responses import (
-    GeoJSONFeatureCollection,
-    MuestraCompleta,
-    SegmentoCompleto,
-)
+from app.schemas.responses import (GeoJSONFeatureCollection, MuestraCompleta,
+                                   SegmentoCompleto)
 from app.schemas.segmento import Segmento, SegmentoCreate
 from app.services.muestra_service import muestra_service
 from app.services.segmento_service import segmento_service
-from fastapi import APIRouter, HTTPException
 
 router = APIRouter()
 

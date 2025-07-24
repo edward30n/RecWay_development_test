@@ -1,12 +1,8 @@
 from typing import List, Optional
 
 from app.db.database import database
-from app.schemas.muestras import (
-    HuecoMuestraCreate,
-    IndicesMuestraCreate,
-    Muestra,
-    MuestraCreate,
-)
+from app.schemas.muestras import (HuecoMuestraCreate, IndicesMuestraCreate,
+                                  Muestra, MuestraCreate)
 from app.schemas.responses import MuestraCompleta
 
 

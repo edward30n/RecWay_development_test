@@ -1,14 +1,12 @@
 from typing import List, Optional
 
-from app.schemas.responses import DatosSensoresCompletos
-from app.schemas.sensores import (
-    FuenteDatosDispositivo,
-    FuenteDatosDispositivoCreate,
-    RegistroSensores,
-    RegistroSensoresCreate,
-)
-from app.services.sensores_service import sensores_service
 from fastapi import APIRouter, HTTPException, Query
+
+from app.schemas.responses import DatosSensoresCompletos
+from app.schemas.sensores import (FuenteDatosDispositivo,
+                                  FuenteDatosDispositivoCreate,
+                                  RegistroSensores, RegistroSensoresCreate)
+from app.services.sensores_service import sensores_service
 
 router = APIRouter(prefix="/sensores", tags=["Sensores y Dispositivos"])
 

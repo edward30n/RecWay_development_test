@@ -1,8 +1,10 @@
 from typing import List
+
+from fastapi import APIRouter, HTTPException
+
 from app.schemas.muestras import Muestra, MuestraCreate
 from app.schemas.responses import MuestraCompleta
 from app.services.muestra_service import muestra_service
-from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/muestras", tags=["Muestras"])
 
