@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from typing import Optional
+
+from pydantic import BaseModel
+
 
 # Modelos para Muestra
 class MuestraBase(BaseModel):
@@ -8,14 +10,17 @@ class MuestraBase(BaseModel):
     fecha_muestra: Optional[str] = None
     id_segmento_seleccionado: float
 
+
 class MuestraCreate(MuestraBase):
     pass
 
+
 class Muestra(MuestraBase):
     id_muestra: int
-    
+
     class Config:
         from_attributes = True
+
 
 # Modelos para Índices de Muestra
 class IndicesMuestraBase(BaseModel):
@@ -27,14 +32,17 @@ class IndicesMuestraBase(BaseModel):
     iri_tercero: Optional[float] = None
     id_muestra_seleccionada: int
 
+
 class IndicesMuestraCreate(IndicesMuestraBase):
     pass
 
+
 class IndicesMuestra(IndicesMuestraBase):
     id_indice_muestra: int
-    
+
     class Config:
         from_attributes = True
+
 
 # Modelos para Huecos de Muestra
 class HuecoMuestraBase(BaseModel):
@@ -44,11 +52,13 @@ class HuecoMuestraBase(BaseModel):
     velocidad: float
     id_muestra_seleccionada: int
 
+
 class HuecoMuestraCreate(HuecoMuestraBase):
     pass
 
+
 class HuecoMuestra(HuecoMuestraBase):
     id_hueco_muestra: int
-    
+
     class Config:
         from_attributes = True

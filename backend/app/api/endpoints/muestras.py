@@ -1,10 +1,13 @@
-from fastapi import APIRouter, HTTPException
 from typing import List
-from app.schemas.muestras import MuestraCreate, Muestra
+
+from fastapi import APIRouter, HTTPException
+
+from app.schemas.muestras import Muestra, MuestraCreate
 from app.schemas.responses import MuestraCompleta
 from app.services.muestra_service import muestra_service
 
 router = APIRouter(prefix="/muestras", tags=["Muestras"])
+
 
 @router.get("/", response_model=List[Muestra])
 async def get_all_muestras():
@@ -13,6 +16,7 @@ async def get_all_muestras():
         return await muestra_service.get_all_muestras()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener muestras: {str(e)}")
+
 
 @router.get("/{id_muestra}", response_model=MuestraCompleta)
 async def get_muestra_completa(id_muestra: int):
@@ -27,6 +31,7 @@ async def get_muestra_completa(id_muestra: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener muestra: {str(e)}")
 
+
 @router.post("/", response_model=Muestra)
 async def create_muestra(muestra: MuestraCreate):
     """Crear una nueva muestra de datos"""
@@ -35,6 +40,7 @@ async def create_muestra(muestra: MuestraCreate):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear muestra: {str(e)}")
 
+
 @router.get("/segmento/{id_segmento}", response_model=List[Muestra])
 async def get_muestras_by_segmento(id_segmento: int):
     """Obtener todas las muestras recolectadas en un segmento específico"""
@@ -42,6 +48,7 @@ async def get_muestras_by_segmento(id_segmento: int):
         return await muestra_service.get_muestras_by_segmento(id_segmento)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener muestras del segmento: {str(e)}")
+
 
 @router.get("/{id_muestra}/indices")
 async def get_indices_muestra(id_muestra: int):
@@ -55,6 +62,7 @@ async def get_indices_muestra(id_muestra: int):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener índices: {str(e)}")
+
 
 @router.get("/{id_muestra}/huecos")
 async def get_huecos_muestra(id_muestra: int):

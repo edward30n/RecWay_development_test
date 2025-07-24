@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel
+
 
 # Modelos para Fuente de Datos del Dispositivo
 class FuenteDatosDispositivoBase(BaseModel):
@@ -27,14 +29,17 @@ class FuenteDatosDispositivoBase(BaseModel):
     recording_duration: Optional[str] = None
     average_sample_rate: Optional[float] = None
 
+
 class FuenteDatosDispositivoCreate(FuenteDatosDispositivoBase):
     pass
 
+
 class FuenteDatosDispositivo(FuenteDatosDispositivoBase):
     id_fuente: int
-    
+
     class Config:
         from_attributes = True
+
 
 # Modelos para Registro de Sensores
 class RegistroSensoresBase(BaseModel):
@@ -63,11 +68,13 @@ class RegistroSensoresBase(BaseModel):
     gps_changed: Optional[bool] = False
     id_fuente: int
 
+
 class RegistroSensoresCreate(RegistroSensoresBase):
     pass
 
+
 class RegistroSensores(RegistroSensoresBase):
     id_registro: int
-    
+
     class Config:
         from_attributes = True
