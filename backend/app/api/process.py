@@ -1,13 +1,11 @@
 from typing import List
 
-from fastapi import APIRouter, HTTPException
-
 from app.schemas.muestra import Muestra, MuestraCreate
-from app.schemas.responses import (GeoJSONFeatureCollection, MuestraCompleta,
-                                   SegmentoCompleto)
+from app.schemas.responses import GeoJSONFeatureCollection, MuestraCompleta, SegmentoCompleto
 from app.schemas.segmento import Segmento, SegmentoCreate
 from app.services.muestra_service import muestra_service
 from app.services.segmento_service import segmento_service
+from fastapi import APIRouter, HTTPException
 
 router = APIRouter()
 
@@ -19,9 +17,7 @@ async def get_all_segmentos():
     try:
         return await segmento_service.get_all_segmentos()
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al obtener segmentos: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al obtener segmentos: {str(e)}")
 
 
 @router.get("/segmentos/{id_segmento}", response_model=Segmento)
@@ -35,9 +31,7 @@ async def get_segmento(id_segmento: float):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al obtener segmento: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al obtener segmento: {str(e)}")
 
 
 @router.post("/segmentos", response_model=Segmento)
@@ -46,9 +40,7 @@ async def create_segmento(segmento: SegmentoCreate):
     try:
         return await segmento_service.create_segmento(segmento)
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al crear segmento: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al crear segmento: {str(e)}")
 
 
 @router.get("/segmentos/geojson", response_model=GeoJSONFeatureCollection)
@@ -57,9 +49,7 @@ async def get_segmentos_geojson():
     try:
         return await segmento_service.get_segmentos_geojson()
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al obtener datos GeoJSON: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al obtener datos GeoJSON: {str(e)}")
 
 
 # Endpoints para Muestras
@@ -69,9 +59,7 @@ async def get_all_muestras():
     try:
         return await muestra_service.get_all_muestras()
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al obtener muestras: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al obtener muestras: {str(e)}")
 
 
 @router.get("/muestras/{id_muestra}", response_model=MuestraCompleta)
@@ -85,9 +73,7 @@ async def get_muestra_completa(id_muestra: int):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al obtener muestra: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al obtener muestra: {str(e)}")
 
 
 @router.get("/segmentos/{id_segmento}/muestras", response_model=List[Muestra])
@@ -96,9 +82,7 @@ async def get_muestras_by_segmento(id_segmento: float):
     try:
         return await muestra_service.get_muestras_by_segmento(id_segmento)
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al obtener muestras del segmento: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al obtener muestras del segmento: {str(e)}")
 
 
 @router.post("/muestras", response_model=Muestra)
@@ -122,9 +106,7 @@ async def process_data(payload: dict):
         # Por ahora solo devolvemos OK para mantener compatibilidad
         return {"status": "ok", "message": "Datos procesados correctamente"}
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error al procesar datos: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error al procesar datos: {str(e)}")
 
 
 @router.get("/process")

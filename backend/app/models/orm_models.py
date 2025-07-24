@@ -4,8 +4,7 @@ Estos NO son necesarios con nuestro enfoque actual, pero pueden ser útiles
 para casos específicos donde queramos usar ORM en lugar de SQL raw.
 """
 
-from sqlalchemy import (BigInteger, Boolean, Column, DateTime, Float,
-                        ForeignKey, Integer, String, Text)
+from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -33,18 +32,10 @@ class Segmento(Base):
     error_gps = Column(Float)
 
     # Relaciones
-    geometrias = relationship(
-        "Geometria", back_populates="segmento", cascade="all, delete-orphan"
-    )
-    indices = relationship(
-        "IndicesSegmento", back_populates="segmento", cascade="all, delete-orphan"
-    )
-    huecos = relationship(
-        "HuecoSegmento", back_populates="segmento", cascade="all, delete-orphan"
-    )
-    muestras = relationship(
-        "Muestra", back_populates="segmento", cascade="all, delete-orphan"
-    )
+    geometrias = relationship("Geometria", back_populates="segmento", cascade="all, delete-orphan")
+    indices = relationship("IndicesSegmento", back_populates="segmento", cascade="all, delete-orphan")
+    huecos = relationship("HuecoSegmento", back_populates="segmento", cascade="all, delete-orphan")
+    muestras = relationship("Muestra", back_populates="segmento", cascade="all, delete-orphan")
 
 
 class Geometria(Base):
@@ -111,12 +102,8 @@ class Muestra(Base):
 
     # Relaciones
     segmento = relationship("Segmento", back_populates="muestras")
-    indices = relationship(
-        "IndicesMuestra", back_populates="muestra", cascade="all, delete-orphan"
-    )
-    huecos = relationship(
-        "HuecoMuestra", back_populates="muestra", cascade="all, delete-orphan"
-    )
+    indices = relationship("IndicesMuestra", back_populates="muestra", cascade="all, delete-orphan")
+    huecos = relationship("HuecoMuestra", back_populates="muestra", cascade="all, delete-orphan")
 
 
 class IndicesMuestra(Base):
@@ -183,9 +170,7 @@ class FuenteDatosDispositivo(Base):
     average_sample_rate = Column(Float)
 
     # Relaciones
-    registros = relationship(
-        "RegistroSensores", back_populates="fuente", cascade="all, delete-orphan"
-    )
+    registros = relationship("RegistroSensores", back_populates="fuente", cascade="all, delete-orphan")
 
 
 class RegistroSensores(Base):

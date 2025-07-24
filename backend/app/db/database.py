@@ -1,7 +1,6 @@
 from typing import Optional
 
 import asyncpg  # type: ignore
-
 from app.core.config import settings
 
 

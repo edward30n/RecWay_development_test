@@ -1,12 +1,14 @@
 from typing import List, Optional
 
 from app.db.database import database
-from app.schemas.responses import (GeoJSONFeature, GeoJSONFeatureCollection,
-                                   GeoJSONGeometry, GeoJSONProperties,
-                                   SegmentoCompleto)
-from app.schemas.segmentos import (GeometriaCreate, HuecoSegmentoCreate,
-                                   IndicesSegmentoCreate, Segmento,
-                                   SegmentoCreate)
+from app.schemas.responses import (
+    GeoJSONFeature,
+    GeoJSONFeatureCollection,
+    GeoJSONGeometry,
+    GeoJSONProperties,
+    SegmentoCompleto,
+)
+from app.schemas.segmentos import GeometriaCreate, HuecoSegmentoCreate, IndicesSegmentoCreate, Segmento, SegmentoCreate
 
 
 class SegmentoService:
@@ -21,9 +23,7 @@ class SegmentoService:
     async def get_segmento_by_id(self, id_segmento: int) -> Optional[Segmento]:
         """Obtener un segmento por ID"""
         async with database.get_connection() as conn:
-            row = await conn.fetchrow(
-                "SELECT * FROM segmento WHERE id_segmento = $1", id_segmento
-            )
+            row = await conn.fetchrow("SELECT * FROM segmento WHERE id_segmento = $1", id_segmento)
             return Segmento(**dict(row)) if row else None
 
     async def create_segmento(self, segmento: SegmentoCreate) -> Segmento:
@@ -113,9 +113,7 @@ class SegmentoService:
                     ]
 
                 feature = GeoJSONFeature(
-                    geometry=GeoJSONGeometry(
-                        type="LineString", coordinates=coordinates
-                    ),
+                    geometry=GeoJSONGeometry(type="LineString", coordinates=coordinates),
                     properties=GeoJSONProperties(
                         id_segmento=row["id_segmento"],
                         nombre=row["nombre"],
