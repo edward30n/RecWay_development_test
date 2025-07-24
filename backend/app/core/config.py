@@ -1,16 +1,21 @@
 import os
 from pathlib import Path
 
-# Cargar variables de entorno desde .env si existe
-env_file = Path(__file__).parent.parent.parent / ".env"
-if env_file.exists():
-    try:
-        from dotenv import load_dotenv
+# Cargar variables de entorno desde .env o .env.docker
+env_files = [
+    Path(__file__).parent.parent.parent / ".env.docker",
+    Path(__file__).parent.parent.parent / ".env"
+]
 
-        load_dotenv(env_file)
-    except ImportError:
-        # Si no está instalado python-dotenv, solo usar variables de entorno del sistema
-        pass
+for env_file in env_files:
+    if env_file.exists():
+        try:
+            from dotenv import load_dotenv
+            load_dotenv(env_file)
+            break  # Cargar solo el primer archivo encontrado
+        except ImportError:
+            # Si no está instalado python-dotenv, solo usar variables de entorno del sistema
+            pass
 
 
 class Settings:
