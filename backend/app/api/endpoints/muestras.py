@@ -1,10 +1,8 @@
 from typing import List
-
-from fastapi import APIRouter, HTTPException
-
 from app.schemas.muestras import Muestra, MuestraCreate
 from app.schemas.responses import MuestraCompleta
 from app.services.muestra_service import muestra_service
+from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/muestras", tags=["Muestras"])
 
@@ -15,7 +13,9 @@ async def get_all_muestras():
     try:
         return await muestra_service.get_all_muestras()
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al obtener muestras: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Error al obtener muestras: {str(e)}"
+        )
 
 
 @router.get("/{id_muestra}", response_model=MuestraCompleta)
@@ -29,7 +29,9 @@ async def get_muestra_completa(id_muestra: int):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al obtener muestra: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Error al obtener muestra: {str(e)}"
+        )
 
 
 @router.post("/", response_model=Muestra)
@@ -47,7 +49,9 @@ async def get_muestras_by_segmento(id_segmento: int):
     try:
         return await muestra_service.get_muestras_by_segmento(id_segmento)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al obtener muestras del segmento: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Error al obtener muestras del segmento: {str(e)}"
+        )
 
 
 @router.get("/{id_muestra}/indices")
@@ -56,12 +60,16 @@ async def get_indices_muestra(id_muestra: int):
     try:
         indices = await muestra_service.get_indices_by_muestra(id_muestra)
         if not indices:
-            raise HTTPException(status_code=404, detail="No se encontraron índices para esta muestra")
+            raise HTTPException(
+                status_code=404, detail="No se encontraron índices para esta muestra"
+            )
         return {"muestra_id": id_muestra, "indices": indices}
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al obtener índices: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Error al obtener índices: {str(e)}"
+        )
 
 
 @router.get("/{id_muestra}/huecos")
@@ -71,4 +79,6 @@ async def get_huecos_muestra(id_muestra: int):
         huecos = await muestra_service.get_huecos_by_muestra(id_muestra)
         return {"muestra_id": id_muestra, "huecos": huecos}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al obtener huecos: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Error al obtener huecos: {str(e)}"
+        )

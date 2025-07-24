@@ -1,12 +1,20 @@
 from typing import List, Optional
 
 from app.db.database import database
-from app.schemas.responses import (GeoJSONFeature, GeoJSONFeatureCollection,
-                                   GeoJSONGeometry, GeoJSONProperties,
-                                   SegmentoCompleto)
-from app.schemas.segmento import (GeometriaCreate, HuecoSegmentoCreate,
-                                  IndicesSegmentoCreate, Segmento,
-                                  SegmentoCreate)
+from app.schemas.responses import (
+    GeoJSONFeature,
+    GeoJSONFeatureCollection,
+    GeoJSONGeometry,
+    GeoJSONProperties,
+    SegmentoCompleto,
+)
+from app.schemas.segmento import (
+    GeometriaCreate,
+    HuecoSegmentoCreate,
+    IndicesSegmentoCreate,
+    Segmento,
+    SegmentoCreate,
+)
 
 
 class SegmentoService:
@@ -21,14 +29,18 @@ class SegmentoService:
     async def get_segmento_by_id(self, id_segmento: float) -> Optional[Segmento]:
         """Obtener un segmento por ID"""
         async with database.get_connection() as conn:
-            row = await conn.fetchrow("SELECT * FROM segmento WHERE id_segmento = $1", id_segmento)
+            row = await conn.fetchrow(
+                "SELECT * FROM segmento WHERE id_segmento = $1", id_segmento
+            )
             return Segmento(**dict(row)) if row else None
 
     async def create_segmento(self, segmento: SegmentoCreate) -> Segmento:
         """Crear un nuevo segmento"""
         async with database.get_connection() as conn:
             # Obtener el próximo ID
-            next_id = await conn.fetchval("SELECT COALESCE(MAX(id_segmento), 0) + 1 FROM segmento")
+            next_id = await conn.fetchval(
+                "SELECT COALESCE(MAX(id_segmento), 0) + 1 FROM segmento"
+            )
 
             query = """
             INSERT INTO segmento (id_segmento, nombre, tipo, latitud_origen, latitud_destino, 
@@ -55,19 +67,28 @@ class SegmentoService:
     async def get_geometrias_by_segmento(self, id_segmento: float):
         """Obtener las geometrías de un segmento"""
         async with database.get_connection() as conn:
-            rows = await conn.fetch("SELECT * FROM geometria WHERE id_segmento_seleccionado = $1 ORDER BY orden", id_segmento)
+            rows = await conn.fetch(
+                "SELECT * FROM geometria WHERE id_segmento_seleccionado = $1 ORDER BY orden",
+                id_segmento,
+            )
             return [dict(row) for row in rows]
 
     async def get_indices_by_segmento(self, id_segmento: float):
         """Obtener los índices de un segmento"""
         async with database.get_connection() as conn:
-            row = await conn.fetchrow("SELECT * FROM indicesSegmento WHERE id_segmento_seleccionado = $1", id_segmento)
+            row = await conn.fetchrow(
+                "SELECT * FROM indicesSegmento WHERE id_segmento_seleccionado = $1",
+                id_segmento,
+            )
             return dict(row) if row else None
 
     async def get_huecos_by_segmento(self, id_segmento: float):
         """Obtener los huecos de un segmento"""
         async with database.get_connection() as conn:
-            rows = await conn.fetch("SELECT * FROM huecoSegmento WHERE id_segmento_seleccionado = $1", id_segmento)
+            rows = await conn.fetch(
+                "SELECT * FROM huecoSegmento WHERE id_segmento_seleccionado = $1",
+                id_segmento,
+            )
             return [dict(row) for row in rows]
 
     async def get_segmentos_geojson(self) -> GeoJSONFeatureCollection:
@@ -102,7 +123,9 @@ class SegmentoService:
                     ]
 
                 feature = GeoJSONFeature(
-                    geometry=GeoJSONGeometry(type="LineString", coordinates=coordinates),
+                    geometry=GeoJSONGeometry(
+                        type="LineString", coordinates=coordinates
+                    ),
                     properties=GeoJSONProperties(
                         id_segmento=row["id_segmento"],
                         nombre=row["nombre"],

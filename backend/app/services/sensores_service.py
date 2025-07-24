@@ -2,9 +2,12 @@ from typing import List, Optional
 
 from app.db.database import database
 from app.schemas.responses import DatosSensoresCompletos
-from app.schemas.sensores import (FuenteDatosDispositivo,
-                                  FuenteDatosDispositivoCreate,
-                                  RegistroSensores, RegistroSensoresCreate)
+from app.schemas.sensores import (
+    FuenteDatosDispositivo,
+    FuenteDatosDispositivoCreate,
+    RegistroSensores,
+    RegistroSensoresCreate,
+)
 
 
 class SensoresService:
@@ -13,16 +16,24 @@ class SensoresService:
     async def get_all_fuentes(self) -> List[FuenteDatosDispositivo]:
         """Obtener todas las fuentes de datos de dispositivos"""
         async with database.get_connection() as conn:
-            rows = await conn.fetch("SELECT * FROM fuente_datos_dispositivo ORDER BY id_fuente")
+            rows = await conn.fetch(
+                "SELECT * FROM fuente_datos_dispositivo ORDER BY id_fuente"
+            )
             return [FuenteDatosDispositivo(**dict(row)) for row in rows]
 
-    async def get_fuente_by_id(self, id_fuente: int) -> Optional[FuenteDatosDispositivo]:
+    async def get_fuente_by_id(
+        self, id_fuente: int
+    ) -> Optional[FuenteDatosDispositivo]:
         """Obtener una fuente de datos por ID"""
         async with database.get_connection() as conn:
-            row = await conn.fetchrow("SELECT * FROM fuente_datos_dispositivo WHERE id_fuente = $1", id_fuente)
+            row = await conn.fetchrow(
+                "SELECT * FROM fuente_datos_dispositivo WHERE id_fuente = $1", id_fuente
+            )
             return FuenteDatosDispositivo(**dict(row)) if row else None
 
-    async def create_fuente(self, fuente: FuenteDatosDispositivoCreate) -> FuenteDatosDispositivo:
+    async def create_fuente(
+        self, fuente: FuenteDatosDispositivoCreate
+    ) -> FuenteDatosDispositivo:
         """Crear una nueva fuente de datos de dispositivo"""
         async with database.get_connection() as conn:
             query = """
@@ -62,15 +73,21 @@ class SensoresService:
             )
             return FuenteDatosDispositivo(**dict(row))
 
-    async def get_registros_by_fuente(self, id_fuente: int, limit: int = 1000) -> List[RegistroSensores]:
+    async def get_registros_by_fuente(
+        self, id_fuente: int, limit: int = 1000
+    ) -> List[RegistroSensores]:
         """Obtener registros de sensores por fuente de datos"""
         async with database.get_connection() as conn:
             rows = await conn.fetch(
-                "SELECT * FROM registro_sensores WHERE id_fuente = $1 ORDER BY timestamp LIMIT $2", id_fuente, limit
+                "SELECT * FROM registro_sensores WHERE id_fuente = $1 ORDER BY timestamp LIMIT $2",
+                id_fuente,
+                limit,
             )
             return [RegistroSensores(**dict(row)) for row in rows]
 
-    async def create_registro(self, registro: RegistroSensoresCreate) -> RegistroSensores:
+    async def create_registro(
+        self, registro: RegistroSensoresCreate
+    ) -> RegistroSensores:
         """Crear un nuevo registro de sensores"""
         async with database.get_connection() as conn:
             query = """
@@ -111,7 +128,9 @@ class SensoresService:
             )
             return RegistroSensores(**dict(row))
 
-    async def get_datos_completos(self, id_fuente: int) -> Optional[DatosSensoresCompletos]:
+    async def get_datos_completos(
+        self, id_fuente: int
+    ) -> Optional[DatosSensoresCompletos]:
         """Obtener datos completos de una fuente con sus registros"""
         fuente = await self.get_fuente_by_id(id_fuente)
         if not fuente:
