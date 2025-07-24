@@ -24,26 +24,22 @@ jobs:
     
     - name: Install dependencies
       run: |
-        cd backend
         python -m pip install --upgrade pip
         pip install flake8 black isort
-        pip install -r requirements.txt
+        pip install -r backend/requirements.txt
     
     - name: Lint with flake8
       run: |
-        cd backend
-        flake8 app --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 app --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        python -m flake8 backend/app --count --select=E9,F63,F7,F82 --show-source --statistics
+        python -m flake8 backend/app --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     
     - name: Check code formatting with black
       run: |
-        cd backend
-        black --check app/
+        python -m black --check backend/
     
     - name: Check import sorting with isort
       run: |
-        cd backend
-        isort --check-only app/
+        python -m isort --check-only backend/
 
   # Job 2: Construir y probar con Docker
   build-and-test:
@@ -56,23 +52,22 @@ jobs:
     
     - name: Create .env.docker file
       run: |
-        cd backend
-        cp .env.docker.example .env.docker
-        sed -i 's/TU_PASSWORD_AQUI/test_password_123/g' .env.docker
+        cp backend/.env.docker.example backend/.env.docker
+        sed -i 's/TU_PASSWORD_AQUI/test_password_123/g' backend/.env.docker
     
     - name: Build Docker images
       run: |
-        docker-compose build
+        docker compose build
     
     - name: Start services
       run: |
-        docker-compose up -d
+        docker compose up -d
         sleep 30  # Esperar a que los servicios estén listos
     
     - name: Check services health
       run: |
-        docker-compose ps
-        docker-compose logs backend
+        docker compose ps
+        docker compose logs backend
     
     - name: Test API endpoints
       run: |
@@ -85,11 +80,11 @@ jobs:
     - name: Test database connection
       run: |
         # Verificar que las tablas se crearon
-        docker-compose exec -T recway_db psql -U postgres -d recWay_db -c "\dt"
+        docker compose exec -T recway_db psql -U postgres -d recWay_db -c "\dt"
     
     - name: Stop services
       run: |
-        docker-compose down
+        docker compose down
 
   # Job 3: Construir y subir imagen a GitHub Container Registry
   build-and-push:
