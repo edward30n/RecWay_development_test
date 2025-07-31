@@ -3,6 +3,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
 import HomePage from './pages/HomePage';
+// Importar los módulos de autenticación adaptados para React Router
+import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
 
 // Crear cliente de React Query
 const queryClient = new QueryClient({
@@ -19,6 +23,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
+          {/* Rutas de autenticación (sin layout) */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          
           {/* Ruta para homepage sin layout */}
           <Route path="/home" element={<HomePage />} />
           
