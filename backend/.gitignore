@@ -1,0 +1,9 @@
+# Archivos Python específicos del backend
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.env
+.env.*
+!.env.docker.example

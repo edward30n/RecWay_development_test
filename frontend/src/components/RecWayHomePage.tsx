@@ -23,7 +23,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Database, BarChart2, Activity, Bell, Mail, Phone, MapPin, Check, Wifi, Thermometer, Droplets, Eye, TrendingUp } from 'lucide-react';
+import { Database, BarChart2, Activity, Mail, Phone, MapPin, Check, Wifi,  Eye, TrendingUp } from 'lucide-react';
 import colors from '../styles/colors';
 
 // ===== INTERFACES =====

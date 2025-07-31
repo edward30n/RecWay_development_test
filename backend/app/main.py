@@ -1,55 +1,48 @@
-from contextlib import asynccontextmanager
-
-from app.api.api import api_router
-from app.core.config import settings
-from app.db.database import database
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.auth_secure import auth_router
+from app.core.config import settings
+# Import all models to ensure they are registered with SQLAlchemy
+import app.models  # This will import all models
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Manejo del ciclo de vida de la aplicación"""
-    # Startup
-    await database.connect()
-    yield
-    # Shutdown
-    await database.disconnect()
-
-
+# Create FastAPI application
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version="1.0.0",
+    description="RecWay API with Secure JWT Authentication",
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
-    docs_url="/docs",  # Documentación en la ruta estándar
-    redoc_url="/redoc",  # ReDoc en la ruta estándar
-    lifespan=lifespan,
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
-# Configurar CORS
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Incluir los routers
-app.include_router(api_router, prefix=settings.API_V1_STR)
+# Include secure authentication endpoints
+app.include_router(auth_router)
 
-
-@app.get("/")
-async def root():
-    """Endpoint de salud de la API"""
+# Health check endpoint
+@app.get("/health")
+def health_check():
     return {
-        "message": f"{settings.PROJECT_NAME} está funcionando correctamente",
-        "version": "1.0.0",
-        "docs_url": f"{settings.API_V1_STR}/docs",
+        "status": "healthy",
+        "service": "RecWay API",
+        "version": "1.0.0"
     }
 
-
-@app.get("/health")
-async def health_check():
-    """Endpoint para verificar el estado de la aplicación"""
-    return {"status": "healthy", "app": settings.PROJECT_NAME, "version": "1.0.0"}
+@app.get("/")
+def read_root():
+    """Root endpoint."""
+    return {
+        "message": f"Welcome to {settings.PROJECT_NAME} API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "redoc": "/redoc"
+    }
