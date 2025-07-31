@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("") 
-  const [isLoading, setIsLoading] = useState(false) 
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [resetEmail, setResetEmail] = useState("")
   const [resetEmailSent, setResetEmailSent] = useState(false)
   const [resetEmailLoading, setResetEmailLoading] = useState(false)
   const [resetEmailError, setResetEmailError] = useState("")
   const navigate = useNavigate()
+  const location = useLocation()
+  const { login, isLoading, isAuthenticated } = useAuth()
+
+  // Redirigir si ya está autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      const from = location.state?.from?.pathname || '/dashboard';
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, location]);
 
   // Add enter animation when the component mounts
   useEffect(() => {
@@ -32,41 +42,22 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setErrorMessage(""); 
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ detail: "Server error" }));
-        throw new Error(errorData.detail || "Login failed");
+      const success = await login(email, password);
+      
+      if (success) {
+        // Redirigir al destino original o al dashboard
+        const from = location.state?.from?.pathname || '/dashboard';
+        navigate(from, { replace: true });
+      } else {
+        setErrorMessage("Credenciales inválidas. Usa: admin@recway.com / admin123");
       }
-
-      const data = await response.json();
-      
-      // Guardar ambos tokens en cookies con atributos adecuados
-      document.cookie = `accessToken=${data.access_token}; path=/; max-age=${30 * 60}; SameSite=Lax`;
-      document.cookie = `refreshToken=${data.refresh_token}; path=/; max-age=${30 * 24 * 60 * 60}; SameSite=Lax`;
-      
-      console.log("Login successful, redirecting to dashboard...");
-      
-      // Redirigir con un pequeño retraso para asegurar que las cookies se guarden
-      setTimeout(() => {
-        navigate("/");
-      }, 100);
       
     } catch (error: any) {
       console.error("Login error:", error);
-      setErrorMessage(error.message || "Invalid email or password");
-      setIsLoading(false);
+      setErrorMessage("Error al iniciar sesión. Inténtalo de nuevo.");
     }
   }
 

@@ -73,8 +73,8 @@ const HomePage: React.FC = () => {
       <RecWayNavigation 
         logoText="RecWay"
         homeUrl="/home"
-        accountUrl="/"
-        onAccountClick={() => window.location.href = '/'}
+        accountUrl="/login"
+        onAccountClick={() => window.location.href = '/login'}
       />
       
       {/* Homepage Content */}
