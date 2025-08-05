@@ -8,6 +8,8 @@ import hmac
 import json
 import base64
 import jwt
+import secrets
+import string
 
 from sqlalchemy.orm import Session
 from app.core.config import settings
@@ -21,6 +23,16 @@ def get_password_hash(password: str) -> str:
     """Hash a password using simple SHA256."""
     # Simple hash for now - in production use bcrypt
     return hashlib.sha256(password.encode()).hexdigest()
+
+def generate_reset_token() -> str:
+    """Generate a secure random token for password reset"""
+    alphabet = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(alphabet) for _ in range(32))
+
+def generate_verification_token() -> str:
+    """Generate a secure random token for email verification"""
+    alphabet = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(alphabet) for _ in range(32))
 
 def create_access_token(
     subject: Union[str, Any], 
