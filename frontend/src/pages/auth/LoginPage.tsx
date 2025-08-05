@@ -19,7 +19,7 @@ export default function LoginPage() {
   // Redirigir si ya está autenticado
   useEffect(() => {
     if (isAuthenticated) {
-      const from = location.state?.from?.pathname || '/dashboard';
+      const from = location.state?.from?.pathname || '/dashboard-secure';
       navigate(from, { replace: true });
     }
   }, [isAuthenticated, navigate, location]);
@@ -48,16 +48,24 @@ export default function LoginPage() {
       const success = await login(email, password);
       
       if (success) {
-        // Redirigir al destino original o al dashboard
-        const from = location.state?.from?.pathname || '/dashboard';
+        // Redirigir al dashboard seguro
+        const from = location.state?.from?.pathname || '/dashboard-secure';
         navigate(from, { replace: true });
-      } else {
-        setErrorMessage("Credenciales inválidas. Usa: admin@recway.com / admin123");
       }
       
     } catch (error: any) {
       console.error("Login error:", error);
-      setErrorMessage("Error al iniciar sesión. Inténtalo de nuevo.");
+      
+      // Manejar errores específicos
+      if (error.message && error.message.includes("Email not verified")) {
+        setErrorMessage("Tu email no ha sido verificado. Por favor, revisa tu bandeja de entrada y verifica tu cuenta antes de iniciar sesión.");
+      } else if (error.message && error.message.includes("Invalid email or password")) {
+        setErrorMessage("Email o contraseña incorrectos. Verifica tus credenciales.");
+      } else if (error.message && error.message.includes("inactive")) {
+        setErrorMessage("Tu cuenta está inactiva. Contacta al soporte.");
+      } else {
+        setErrorMessage(error.message || "Error al iniciar sesión. Inténtalo de nuevo.");
+      }
     }
   }
 

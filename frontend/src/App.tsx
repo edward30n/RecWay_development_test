@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard/Dashboard';
+import DashboardSecure from './pages/Dashboard/DashboardSecure';
 import HomePage from './pages/HomePage';
 // Importar los módulos de autenticación adaptados para React Router
 import LoginPage from './pages/auth/LoginPage';
@@ -39,7 +40,17 @@ function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/verify-email" element={<VerifyEmailPage />} />
             
-            {/* Rutas protegidas con layout para dashboard */}
+            {/* Ruta de dashboard simple y seguro */}
+            <Route 
+              path="/dashboard-secure" 
+              element={
+                <ProtectedRoute>
+                  <DashboardSecure />
+                </ProtectedRoute>
+              }
+            />
+            
+            {/* Rutas protegidas con layout para dashboard completo */}
             <Route 
               path="/dashboard" 
               element={

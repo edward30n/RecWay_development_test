@@ -46,41 +46,48 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setIsLoading(false);
   }, []);
 
-  // Función de login (simulada)
+  // Función de login con API real
   const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     
     try {
-      // Simulación de llamada a API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Credenciales de prueba
-      if (email === 'admin@recway.com' && password === 'admin123') {
-        const mockUser: User = {
-          id: '1',
-          email: 'admin@recway.com',
-          name: 'Administrador RecWay'
-        };
-        
-        const mockToken = 'recway_token_' + Date.now();
-        
-        // Guardar en localStorage
-        localStorage.setItem('recway_token', mockToken);
-        localStorage.setItem('recway_user', JSON.stringify(mockUser));
-        
-        // Actualizar estado
-        setToken(mockToken);
-        setUser(mockUser);
-        setIsLoading(false);
-        
-        return true;
-      } else {
-        setIsLoading(false);
-        return false;
+      const response = await fetch('http://localhost:8000/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Login failed');
       }
-    } catch (error) {
+
+      // Extraer información del usuario y token
+      const user: User = {
+        id: data.user.id.toString(),
+        email: data.user.email,
+        name: data.user.full_name || data.user.email
+      };
+
+      const token = data.access_token;
+
+      // Guardar en localStorage
+      localStorage.setItem('recway_token', token);
+      localStorage.setItem('recway_user', JSON.stringify(user));
+      localStorage.setItem('recway_refresh_token', data.refresh_token);
+
+      // Actualizar estado
+      setToken(token);
+      setUser(user);
       setIsLoading(false);
-      return false;
+
+      return true;
+    } catch (error: any) {
+      setIsLoading(false);
+      throw error; // Re-lanzar el error para que el componente pueda manejarlo
     }
   };
 
@@ -88,6 +95,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const logout = () => {
     localStorage.removeItem('recway_token');
     localStorage.removeItem('recway_user');
+    localStorage.removeItem('recway_refresh_token');
     setToken(null);
     setUser(null);
   };
