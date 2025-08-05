@@ -9,11 +9,6 @@ export default function SignupPage() {
   const [acceptedTerms, setAcceptedTerms] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState("")
   
-  // Estados para las opciones de compañía
-  const [companyType, setCompanyType] = useState<"individual" | "new" | "existing">("individual")
-  const [companyName, setCompanyName] = useState("")
-  const [companyId, setCompanyId] = useState("")
-  const [companyCode, setCompanyCode] = useState("")
   const [countryCode, setCountryCode] = useState("")
   const [countries, setCountries] = useState<{ code: string; name: string }[]>([])
   
@@ -72,64 +67,39 @@ export default function SignupPage() {
       return
     }
 
+    // Validar que todos los campos requeridos estén completos
+    if (!email || !password || !name || !phone || !countryCode) {
+      setErrorMessage("Please fill in all required fields.")
+      return
+    }
+
     setIsLoading(true)
     setErrorMessage("")
 
     try {
-      let response;
-      
-      // Si se seleccionó unirse a una compañía existente
-      if (companyType === "existing") {
-        response = await fetch("http://localhost:8000/api/v1/auth/join-company", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            full_name: name,
-            password,
-            phone,
-            invite_code: companyCode,
-            accepted_terms: acceptedTerms,
-            country_code: countryCode,
-          })
-        });
-      } else {
-        // Para registro individual o nueva compañía
-        let payload: any = {
-          email,
-          full_name: name,
-          password,
-          accepted_terms: acceptedTerms,
-          phone,
-          country_code: countryCode,
-        }
-
-        // Si se seleccionó crear una nueva compañía
-        if (companyType === "new") {
-          payload = {
-            ...payload,
-            company_relationship: "new_company",
-            company_data: {
-              name: companyName,
-              tax_id: companyId
-            }
-          }
-        }
-
-        response = await fetch("http://localhost:8000/api/v1/auth/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload)
-        });
+      // Payload para registro de usuario general
+      const payload = {
+        email,
+        password,
+        full_name: name,
+        phone,
+        country_code: countryCode,
+        user_type: "general",
+        company_id: null  // Usuario general sin compañía
       }
 
+      const response = await fetch("http://localhost:8000/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Registration failed");
+        throw new Error(data.detail || "Registration failed");
       }
 
       // Registro exitoso
@@ -138,11 +108,10 @@ export default function SignupPage() {
       // Reset del formulario
       setEmail("");
       setPassword("");
+      setConfirmPassword("");
       setName("");
       setPhone("");
-      setCompanyName("");
-      setCompanyId("");
-      setCompanyCode("");
+      setCountryCode("");
       setAcceptedTerms(false);
       
       // Redirección al login después de un retraso
@@ -194,12 +163,17 @@ export default function SignupPage() {
           {registrationSuccess ? (
             <div className="text-center">
               <div className="bg-green-100 bg-opacity-20 rounded-lg p-4 mb-6">
-                <i className="fas fa-check-circle text-4xl text-green-400 mb-3"></i>
-                <p className="text-white text-lg font-semibold">Registration Successful!</p>
+                <i className="fas fa-envelope-open-text text-4xl text-green-400 mb-3"></i>
+                <h3 className="text-white text-xl font-semibold mb-2">Registration Successful!</h3>
                 <p className="text-white mt-2">
-                  A verification email has been sent to your email address. 
-                  Please check your inbox and follow the instructions to verify your account.
+                  We've sent a verification email to <strong>{email}</strong>
                 </p>
+                <p className="text-white mt-2">
+                  Please check your inbox and click the verification link to activate your account.
+                </p>
+                <div className="mt-4 text-sm text-gray-300">
+                  <p>Don't forget to check your spam folder if you can't find the email.</p>
+                </div>
               </div>
               <p className="text-white mb-4">You'll be redirected to the login page shortly.</p>
               <Link to="/login">
@@ -330,94 +304,7 @@ export default function SignupPage() {
                 </div>
               </div>
 
-              {/* Selección de tipo de compañía */}
-              <div className="mb-4">
-                <label className="block text-white mb-2">Account Type</label>
-                <div className="grid grid-cols-3 gap-2">
-                  <button
-                    type="button"
-                    className={`company-option ${companyType === 'individual' ? 'company-option-selected' : 'company-option-unselected'}`}
-                    onClick={() => setCompanyType('individual')}
-                  >
-                    Individual
-                  </button>
-                  <button
-                    type="button"
-                    className={`company-option ${companyType === 'new' ? 'company-option-selected' : 'company-option-unselected'}`}
-                    onClick={() => setCompanyType('new')}
-                  >
-                    New Company
-                  </button>
-                  <button
-                    type="button"
-                    className={`company-option ${companyType === 'existing' ? 'company-option-selected' : 'company-option-unselected'}`}
-                    onClick={() => setCompanyType('existing')}
-                  >
-                    Join Company
-                  </button>
-                </div>
-              </div>
-              
-              {/* Campos para nueva compañía */}
-              {companyType === 'new' && (
-                <>
-                  <div className="mb-4">
-                    <label htmlFor="companyName" className="block text-white mb-2">Company Name</label>
-                    <div className="flex items-center bg-white rounded-full overflow-hidden">
-                      <div className="flex items-center justify-center w-10 h-10 ml-2">
-                        <i className="fas fa-building text-gray-600"></i>
-                      </div>
-                      <input 
-                        type="text" 
-                        id="companyName" 
-                        className="flex-1 px-2 py-3 rounded-full focus:outline-none text-gray-800 bg-white" 
-                        placeholder="Enter company name" 
-                        value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                        required 
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="companyId" className="block text-white mb-2">Tax ID / Registration Number</label>
-                    <div className="flex items-center bg-white rounded-full overflow-hidden">
-                      <div className="flex items-center justify-center w-10 h-10 ml-2">
-                        <i className="fas fa-id-card text-gray-600"></i>
-                      </div>
-                      <input 
-                        type="text" 
-                        id="companyId" 
-                        className="flex-1 px-2 py-3 rounded-full focus:outline-none text-gray-800 bg-white" 
-                        placeholder="Enter tax ID or registration number" 
-                        value={companyId}
-                        onChange={(e) => setCompanyId(e.target.value)}
-                        required 
-                      />
-                    </div>
-                  </div>
-                </>
-              )}
-              
-              {/* Campos para compañía existente */}
-              {companyType === 'existing' && (
-                <div className="mb-4">
-                  <label htmlFor="companyCode" className="block text-white mb-2">Company Invite Code</label>
-                  <div className="flex items-center bg-white rounded-full overflow-hidden">
-                    <div className="flex items-center justify-center w-10 h-10 ml-2">
-                      <i className="fas fa-key text-gray-600"></i>
-                    </div>
-                    <input 
-                      type="text" 
-                      id="companyCode" 
-                      className="flex-1 px-2 py-3 rounded-full focus:outline-none text-gray-800 bg-white" 
-                      placeholder="Enter company invite code" 
-                      value={companyCode}
-                      onChange={(e) => setCompanyCode(e.target.value)}
-                      required 
-                    />
-                  </div>
-                </div>
-              )}
+              {/* Los campos de compañía han sido removidos ya que solo nos enfocamos en el registro de usuario general */}
 
               {/* Display error message */}
               {errorMessage && (
