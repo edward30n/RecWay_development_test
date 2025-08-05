@@ -4,6 +4,15 @@ from sqlalchemy.orm import relationship
 
 from app.db.session import Base
 
+class Country(Base):
+    __tablename__ = "countries"
+    
+    code = Column(String(2), primary_key=True, index=True, nullable=False)  # CO, US, etc.
+    name = Column(String(100), nullable=False)  # Colombia, United States, etc.
+    
+    def __repr__(self):
+        return f"<Country(code='{self.code}', name='{self.name}')>"
+
 class User(Base):
     __tablename__ = "users"
 
@@ -17,7 +26,7 @@ class User(Base):
     registered_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False)
     last_activity = Column(DateTime(timezone=True), nullable=True)
     is_active = Column(Boolean, default=True, nullable=False)
-    is_email_verified = Column(Boolean, default=True, nullable=False)
+    is_email_verified = Column(Boolean, default=False, nullable=False)
     email_verification_token = Column(Text, nullable=True)
     reset_token = Column(String(255), nullable=True)
     reset_token_expires = Column(DateTime(timezone=True), nullable=True)
