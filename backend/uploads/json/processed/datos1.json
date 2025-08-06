@@ -1,0 +1,1322 @@
+[
+  {
+    "numero": 0,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7334758,
+    "latitud_destino": 4.7344758,
+    "longitud_origen": -74.0775898,
+    "longitud_destino": -74.0765898,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0775898,
+        "latitud": 4.7334758
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0765898,
+        "latitud": 4.7344758
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.009,
+    "iri": 0.677,
+    "IRI_modificado": 2.462,
+    "az": 0.378,
+    "ax": 4.437,
+    "wx": 3.401,
+    "huecos": [
+      {
+        "latitud": 4.7334758,
+        "longitud": -74.0775898,
+        "magnitud": 0.926,
+        "velocidad": 2.734
+      },
+      {
+        "latitud": 4.7344758,
+        "longitud": -74.0765898,
+        "magnitud": 1.81,
+        "velocidad": 0.171
+      }
+    ]
+  },
+  {
+    "numero": 1,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7336202,
+    "latitud_destino": 4.7346202,
+    "longitud_origen": -74.0777076,
+    "longitud_destino": -74.07670759999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0777076,
+        "latitud": 4.7336202
+      },
+      {
+        "orden": 1,
+        "longitud": -74.07670759999999,
+        "latitud": 4.7346202
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 0.284,
+    "iri": 12.955,
+    "IRI_modificado": 2.977,
+    "az": 1.073,
+    "ax": 3.172,
+    "wx": 2.66,
+    "huecos": [
+      {
+        "latitud": 4.7336202,
+        "longitud": -74.0777076,
+        "magnitud": 3.765,
+        "velocidad": 2.415
+      },
+      {
+        "latitud": 4.7346202,
+        "longitud": -74.07670759999999,
+        "magnitud": 0.823,
+        "velocidad": 2.532
+      }
+    ]
+  },
+  {
+    "numero": 2,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7337482,
+    "latitud_destino": 4.7347482,
+    "longitud_origen": -74.0778449,
+    "longitud_destino": -74.0768449,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0778449,
+        "latitud": 4.7337482
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0768449,
+        "latitud": 4.7347482
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 0.691,
+    "iri": 16.416,
+    "IRI_modificado": 1.302,
+    "az": 1.316,
+    "ax": 4.578,
+    "wx": 2.361,
+    "huecos": [
+      {
+        "latitud": 4.7337482,
+        "longitud": -74.0778449,
+        "magnitud": 2.687,
+        "velocidad": 2.204
+      },
+      {
+        "latitud": 4.7347482,
+        "longitud": -74.0768449,
+        "magnitud": 4.806,
+        "velocidad": 3.557
+      }
+    ]
+  },
+  {
+    "numero": 3,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7338618,
+    "latitud_destino": 4.7348618,
+    "longitud_origen": -74.0780086,
+    "longitud_destino": -74.0770086,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0780086,
+        "latitud": 4.7338618
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0770086,
+        "latitud": 4.7348618
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 3.3,
+    "iri": 16.63,
+    "IRI_modificado": 3.022,
+    "az": 3.884,
+    "ax": 2.032,
+    "wx": 4.092,
+    "huecos": [
+      {
+        "latitud": 4.7338618,
+        "longitud": -74.0780086,
+        "magnitud": 3.305,
+        "velocidad": 3.929
+      },
+      {
+        "latitud": 4.7348618,
+        "longitud": -74.0770086,
+        "magnitud": 2.395,
+        "velocidad": 2.883
+      }
+    ]
+  },
+  {
+    "numero": 4,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7339827,
+    "latitud_destino": 4.734982700000001,
+    "longitud_origen": -74.078192,
+    "longitud_destino": -74.077192,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.078192,
+        "latitud": 4.7339827
+      },
+      {
+        "orden": 1,
+        "longitud": -74.077192,
+        "latitud": 4.734982700000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.012,
+    "iri": 19.768,
+    "IRI_modificado": 4.363,
+    "az": 4.761,
+    "ax": 1.194,
+    "wx": 0.754,
+    "huecos": [
+      {
+        "latitud": 4.7339827,
+        "longitud": -74.078192,
+        "magnitud": 1.722,
+        "velocidad": 0.624
+      },
+      {
+        "latitud": 4.734982700000001,
+        "longitud": -74.077192,
+        "magnitud": 0.451,
+        "velocidad": 3.549
+      }
+    ]
+  },
+  {
+    "numero": 5,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7341263,
+    "latitud_destino": 4.7351263,
+    "longitud_origen": -74.0784375,
+    "longitud_destino": -74.0774375,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0784375,
+        "latitud": 4.7341263
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0774375,
+        "latitud": 4.7351263
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.598,
+    "iri": 8.172,
+    "IRI_modificado": 0.657,
+    "az": 0.784,
+    "ax": 2.535,
+    "wx": 3.651,
+    "huecos": [
+      {
+        "latitud": 4.7341263,
+        "longitud": -74.0784375,
+        "magnitud": 0.178,
+        "velocidad": 2.4
+      },
+      {
+        "latitud": 4.7351263,
+        "longitud": -74.0774375,
+        "magnitud": 3.114,
+        "velocidad": 3.2
+      }
+    ]
+  },
+  {
+    "numero": 6,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7344949,
+    "latitud_destino": 4.7354949,
+    "longitud_origen": -74.0789053,
+    "longitud_destino": -74.0779053,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0789053,
+        "latitud": 4.7344949
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0779053,
+        "latitud": 4.7354949
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.398,
+    "iri": 18.769,
+    "IRI_modificado": 4.225,
+    "az": 0.981,
+    "ax": 0.084,
+    "wx": 4.304,
+    "huecos": [
+      {
+        "latitud": 4.7344949,
+        "longitud": -74.0789053,
+        "magnitud": 2.866,
+        "velocidad": 1.582
+      },
+      {
+        "latitud": 4.7354949,
+        "longitud": -74.0779053,
+        "magnitud": 4.484,
+        "velocidad": 4.814
+      }
+    ]
+  },
+  {
+    "numero": 7,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7346736,
+    "latitud_destino": 4.7356736,
+    "longitud_origen": -74.0794014,
+    "longitud_destino": -74.07840139999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0794014,
+        "latitud": 4.7346736
+      },
+      {
+        "orden": 1,
+        "longitud": -74.07840139999999,
+        "latitud": 4.7356736
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 0.655,
+    "iri": 2.169,
+    "IRI_modificado": 1.274,
+    "az": 3.78,
+    "ax": 0.072,
+    "wx": 1.279,
+    "huecos": [
+      {
+        "latitud": 4.7346736,
+        "longitud": -74.0794014,
+        "magnitud": 2.929,
+        "velocidad": 0.325
+      },
+      {
+        "latitud": 4.7356736,
+        "longitud": -74.07840139999999,
+        "magnitud": 3.953,
+        "velocidad": 2.64
+      }
+    ]
+  },
+  {
+    "numero": 8,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7348783,
+    "latitud_destino": 4.7358783,
+    "longitud_origen": -74.0798992,
+    "longitud_destino": -74.0788992,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0798992,
+        "latitud": 4.7348783
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0788992,
+        "latitud": 4.7358783
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.902,
+    "iri": 16.334,
+    "IRI_modificado": 0.877,
+    "az": 3.862,
+    "ax": 2.187,
+    "wx": 0.334,
+    "huecos": [
+      {
+        "latitud": 4.7348783,
+        "longitud": -74.0798992,
+        "magnitud": 1.994,
+        "velocidad": 1.423
+      },
+      {
+        "latitud": 4.7358783,
+        "longitud": -74.0788992,
+        "magnitud": 0.557,
+        "velocidad": 4.954
+      }
+    ]
+  },
+  {
+    "numero": 9,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7351435,
+    "latitud_destino": 4.736143500000001,
+    "longitud_origen": -74.0803232,
+    "longitud_destino": -74.07932319999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0803232,
+        "latitud": 4.7351435
+      },
+      {
+        "orden": 1,
+        "longitud": -74.07932319999999,
+        "latitud": 4.736143500000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.626,
+    "iri": 13.828,
+    "IRI_modificado": 4.271,
+    "az": 0.545,
+    "ax": 3.223,
+    "wx": 3.738,
+    "huecos": [
+      {
+        "latitud": 4.7351435,
+        "longitud": -74.0803232,
+        "magnitud": 4.182,
+        "velocidad": 4.969
+      },
+      {
+        "latitud": 4.736143500000001,
+        "longitud": -74.07932319999999,
+        "magnitud": 3.129,
+        "velocidad": 1.437
+      }
+    ]
+  },
+  {
+    "numero": 10,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7354332,
+    "latitud_destino": 4.7364332000000005,
+    "longitud_origen": -74.0806023,
+    "longitud_destino": -74.07960229999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0806023,
+        "latitud": 4.7354332
+      },
+      {
+        "orden": 1,
+        "longitud": -74.07960229999999,
+        "latitud": 4.7364332000000005
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 0.428,
+    "iri": 12.559,
+    "IRI_modificado": 3.051,
+    "az": 3.502,
+    "ax": 0.163,
+    "wx": 1.498,
+    "huecos": [
+      {
+        "latitud": 4.7354332,
+        "longitud": -74.0806023,
+        "magnitud": 4.614,
+        "velocidad": 2.172
+      },
+      {
+        "latitud": 4.7364332000000005,
+        "longitud": -74.07960229999999,
+        "magnitud": 1.905,
+        "velocidad": 0.143
+      }
+    ]
+  },
+  {
+    "numero": 11,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7356857,
+    "latitud_destino": 4.736685700000001,
+    "longitud_origen": -74.0809871,
+    "longitud_destino": -74.0799871,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0809871,
+        "latitud": 4.7356857
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0799871,
+        "latitud": 4.736685700000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.059,
+    "iri": 3.7,
+    "IRI_modificado": 0.197,
+    "az": 3.463,
+    "ax": 4.294,
+    "wx": 1.156,
+    "huecos": [
+      {
+        "latitud": 4.7356857,
+        "longitud": -74.0809871,
+        "magnitud": 4.905,
+        "velocidad": 0.984
+      },
+      {
+        "latitud": 4.736685700000001,
+        "longitud": -74.0799871,
+        "magnitud": 4.391,
+        "velocidad": 0.016
+      }
+    ]
+  },
+  {
+    "numero": 12,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7359027,
+    "latitud_destino": 4.7369027,
+    "longitud_origen": -74.0813469,
+    "longitud_destino": -74.0803469,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0813469,
+        "latitud": 4.7359027
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0803469,
+        "latitud": 4.7369027
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 3.637,
+    "iri": 6.034,
+    "IRI_modificado": 3.299,
+    "az": 1.403,
+    "ax": 0.418,
+    "wx": 2.817,
+    "huecos": [
+      {
+        "latitud": 4.7359027,
+        "longitud": -74.0813469,
+        "magnitud": 0.311,
+        "velocidad": 1.637
+      },
+      {
+        "latitud": 4.7369027,
+        "longitud": -74.0803469,
+        "magnitud": 1.95,
+        "velocidad": 1.836
+      }
+    ]
+  },
+  {
+    "numero": 13,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.736106,
+    "latitud_destino": 4.737106000000001,
+    "longitud_origen": -74.0816302,
+    "longitud_destino": -74.0806302,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0816302,
+        "latitud": 4.736106
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0806302,
+        "latitud": 4.737106000000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 0.312,
+    "iri": 0.366,
+    "IRI_modificado": 3.863,
+    "az": 2.608,
+    "ax": 0.033,
+    "wx": 0.902,
+    "huecos": [
+      {
+        "latitud": 4.736106,
+        "longitud": -74.0816302,
+        "magnitud": 4.729,
+        "velocidad": 1.65
+      },
+      {
+        "latitud": 4.737106000000001,
+        "longitud": -74.0806302,
+        "magnitud": 4.505,
+        "velocidad": 0.645
+      }
+    ]
+  },
+  {
+    "numero": 14,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7363286,
+    "latitud_destino": 4.7373286000000006,
+    "longitud_origen": -74.0819271,
+    "longitud_destino": -74.0809271,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0819271,
+        "latitud": 4.7363286
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0809271,
+        "latitud": 4.7373286000000006
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.725,
+    "iri": 9.855,
+    "IRI_modificado": 0.15,
+    "az": 1.611,
+    "ax": 1.918,
+    "wx": 0.649,
+    "huecos": [
+      {
+        "latitud": 4.7363286,
+        "longitud": -74.0819271,
+        "magnitud": 1.304,
+        "velocidad": 2.207
+      },
+      {
+        "latitud": 4.7373286000000006,
+        "longitud": -74.0809271,
+        "magnitud": 2.891,
+        "velocidad": 4.967
+      }
+    ]
+  },
+  {
+    "numero": 15,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7365893,
+    "latitud_destino": 4.737589300000001,
+    "longitud_origen": -74.0821529,
+    "longitud_destino": -74.08115289999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0821529,
+        "latitud": 4.7365893
+      },
+      {
+        "orden": 1,
+        "longitud": -74.08115289999999,
+        "latitud": 4.737589300000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.586,
+    "iri": 19.49,
+    "IRI_modificado": 0.925,
+    "az": 4.631,
+    "ax": 2.09,
+    "wx": 3.916,
+    "huecos": [
+      {
+        "latitud": 4.7365893,
+        "longitud": -74.0821529,
+        "magnitud": 3.534,
+        "velocidad": 2.892
+      },
+      {
+        "latitud": 4.737589300000001,
+        "longitud": -74.08115289999999,
+        "magnitud": 3.622,
+        "velocidad": 2.244
+      }
+    ]
+  },
+  {
+    "numero": 16,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7368973,
+    "latitud_destino": 4.7378973,
+    "longitud_origen": -74.0823928,
+    "longitud_destino": -74.08139279999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0823928,
+        "latitud": 4.7368973
+      },
+      {
+        "orden": 1,
+        "longitud": -74.08139279999999,
+        "latitud": 4.7378973
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.222,
+    "iri": 11.804,
+    "IRI_modificado": 0.171,
+    "az": 3.132,
+    "ax": 1.232,
+    "wx": 2.888,
+    "huecos": [
+      {
+        "latitud": 4.7368973,
+        "longitud": -74.0823928,
+        "magnitud": 1.147,
+        "velocidad": 3.903
+      },
+      {
+        "latitud": 4.7378973,
+        "longitud": -74.08139279999999,
+        "magnitud": 0.077,
+        "velocidad": 3.426
+      }
+    ]
+  },
+  {
+    "numero": 17,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7372082,
+    "latitud_destino": 4.738208200000001,
+    "longitud_origen": -74.0827496,
+    "longitud_destino": -74.0817496,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0827496,
+        "latitud": 4.7372082
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0817496,
+        "latitud": 4.738208200000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.246,
+    "iri": 9.576,
+    "IRI_modificado": 1.332,
+    "az": 4.519,
+    "ax": 0.729,
+    "wx": 1.441,
+    "huecos": [
+      {
+        "latitud": 4.7372082,
+        "longitud": -74.0827496,
+        "magnitud": 4.549,
+        "velocidad": 0.269
+      },
+      {
+        "latitud": 4.738208200000001,
+        "longitud": -74.0817496,
+        "magnitud": 3.883,
+        "velocidad": 4.978
+      }
+    ]
+  },
+  {
+    "numero": 18,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7373823,
+    "latitud_destino": 4.7383823000000005,
+    "longitud_origen": -74.083148,
+    "longitud_destino": -74.08214799999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.083148,
+        "latitud": 4.7373823
+      },
+      {
+        "orden": 1,
+        "longitud": -74.08214799999999,
+        "latitud": 4.7383823000000005
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.271,
+    "iri": 3.943,
+    "IRI_modificado": 4.54,
+    "az": 2.524,
+    "ax": 1.683,
+    "wx": 2.819,
+    "huecos": [
+      {
+        "latitud": 4.7373823,
+        "longitud": -74.083148,
+        "magnitud": 4.387,
+        "velocidad": 3.505
+      },
+      {
+        "latitud": 4.7383823000000005,
+        "longitud": -74.08214799999999,
+        "magnitud": 1.668,
+        "velocidad": 1.53
+      }
+    ]
+  },
+  {
+    "numero": 19,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7375416,
+    "latitud_destino": 4.7385416000000005,
+    "longitud_origen": -74.0835435,
+    "longitud_destino": -74.0825435,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0835435,
+        "latitud": 4.7375416
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0825435,
+        "latitud": 4.7385416000000005
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.307,
+    "iri": 19.857,
+    "IRI_modificado": 4.351,
+    "az": 3.858,
+    "ax": 2.759,
+    "wx": 3.971,
+    "huecos": [
+      {
+        "latitud": 4.7375416,
+        "longitud": -74.0835435,
+        "magnitud": 4.683,
+        "velocidad": 4.569
+      },
+      {
+        "latitud": 4.7385416000000005,
+        "longitud": -74.0825435,
+        "magnitud": 3.182,
+        "velocidad": 3.778
+      }
+    ]
+  },
+  {
+    "numero": 20,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7376341,
+    "latitud_destino": 4.7386341000000005,
+    "longitud_origen": -74.0839861,
+    "longitud_destino": -74.0829861,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0839861,
+        "latitud": 4.7376341
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0829861,
+        "latitud": 4.7386341000000005
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.318,
+    "iri": 12.755,
+    "IRI_modificado": 4.364,
+    "az": 1.395,
+    "ax": 1.376,
+    "wx": 4.038,
+    "huecos": [
+      {
+        "latitud": 4.7376341,
+        "longitud": -74.0839861,
+        "magnitud": 1.089,
+        "velocidad": 4.721
+      },
+      {
+        "latitud": 4.7386341000000005,
+        "longitud": -74.0829861,
+        "magnitud": 1.821,
+        "velocidad": 4.881
+      }
+    ]
+  },
+  {
+    "numero": 21,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7377898,
+    "latitud_destino": 4.7387898,
+    "longitud_origen": -74.0844545,
+    "longitud_destino": -74.0834545,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0844545,
+        "latitud": 4.7377898
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0834545,
+        "latitud": 4.7387898
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.584,
+    "iri": 9.625,
+    "IRI_modificado": 4.824,
+    "az": 3.31,
+    "ax": 4.8,
+    "wx": 1.618,
+    "huecos": [
+      {
+        "latitud": 4.7377898,
+        "longitud": -74.0844545,
+        "magnitud": 0.819,
+        "velocidad": 4.208
+      },
+      {
+        "latitud": 4.7387898,
+        "longitud": -74.0834545,
+        "magnitud": 2.908,
+        "velocidad": 0.599
+      }
+    ]
+  },
+  {
+    "numero": 22,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7379765,
+    "latitud_destino": 4.738976500000001,
+    "longitud_origen": -74.0849508,
+    "longitud_destino": -74.0839508,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0849508,
+        "latitud": 4.7379765
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0839508,
+        "latitud": 4.738976500000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.799,
+    "iri": 19.407,
+    "IRI_modificado": 0.751,
+    "az": 2.462,
+    "ax": 2.165,
+    "wx": 1.532,
+    "huecos": [
+      {
+        "latitud": 4.7379765,
+        "longitud": -74.0849508,
+        "magnitud": 4.053,
+        "velocidad": 2.218
+      },
+      {
+        "latitud": 4.738976500000001,
+        "longitud": -74.0839508,
+        "magnitud": 1.142,
+        "velocidad": 1.103
+      }
+    ]
+  },
+  {
+    "numero": 23,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7381197,
+    "latitud_destino": 4.739119700000001,
+    "longitud_origen": -74.0854184,
+    "longitud_destino": -74.08441839999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0854184,
+        "latitud": 4.7381197
+      },
+      {
+        "orden": 1,
+        "longitud": -74.08441839999999,
+        "latitud": 4.739119700000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.654,
+    "iri": 10.074,
+    "IRI_modificado": 2.638,
+    "az": 2.524,
+    "ax": 2.463,
+    "wx": 0.33,
+    "huecos": [
+      {
+        "latitud": 4.7381197,
+        "longitud": -74.0854184,
+        "magnitud": 2.494,
+        "velocidad": 0.618
+      },
+      {
+        "latitud": 4.739119700000001,
+        "longitud": -74.08441839999999,
+        "magnitud": 2.965,
+        "velocidad": 1.046
+      }
+    ]
+  },
+  {
+    "numero": 24,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7383365,
+    "latitud_destino": 4.7393365,
+    "longitud_origen": -74.0858994,
+    "longitud_destino": -74.0848994,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0858994,
+        "latitud": 4.7383365
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0848994,
+        "latitud": 4.7393365
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.228,
+    "iri": 10.622,
+    "IRI_modificado": 1.471,
+    "az": 1.455,
+    "ax": 0.025,
+    "wx": 4.441,
+    "huecos": [
+      {
+        "latitud": 4.7383365,
+        "longitud": -74.0858994,
+        "magnitud": 0.018,
+        "velocidad": 2.195
+      },
+      {
+        "latitud": 4.7393365,
+        "longitud": -74.0848994,
+        "magnitud": 3.693,
+        "velocidad": 0.563
+      }
+    ]
+  },
+  {
+    "numero": 25,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7384629,
+    "latitud_destino": 4.7394629,
+    "longitud_origen": -74.086285,
+    "longitud_destino": -74.085285,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.086285,
+        "latitud": 4.7384629
+      },
+      {
+        "orden": 1,
+        "longitud": -74.085285,
+        "latitud": 4.7394629
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 0.569,
+    "iri": 17.324,
+    "IRI_modificado": 0.411,
+    "az": 2.631,
+    "ax": 2.691,
+    "wx": 1.064,
+    "huecos": [
+      {
+        "latitud": 4.7384629,
+        "longitud": -74.086285,
+        "magnitud": 3.094,
+        "velocidad": 0.181
+      },
+      {
+        "latitud": 4.7394629,
+        "longitud": -74.085285,
+        "magnitud": 4.086,
+        "velocidad": 3.57
+      }
+    ]
+  },
+  {
+    "numero": 26,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7386195,
+    "latitud_destino": 4.739619500000001,
+    "longitud_origen": -74.0866259,
+    "longitud_destino": -74.0856259,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0866259,
+        "latitud": 4.7386195
+      },
+      {
+        "orden": 1,
+        "longitud": -74.0856259,
+        "latitud": 4.739619500000001
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 4.152,
+    "iri": 13.182,
+    "IRI_modificado": 3.124,
+    "az": 1.408,
+    "ax": 3.417,
+    "wx": 3.067,
+    "huecos": [
+      {
+        "latitud": 4.7386195,
+        "longitud": -74.0866259,
+        "magnitud": 4.853,
+        "velocidad": 3.108
+      },
+      {
+        "latitud": 4.739619500000001,
+        "longitud": -74.0856259,
+        "magnitud": 1.974,
+        "velocidad": 1.589
+      }
+    ]
+  },
+  {
+    "numero": 27,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7388977,
+    "latitud_destino": 4.7398977,
+    "longitud_origen": -74.0869137,
+    "longitud_destino": -74.08591369999999,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.0869137,
+        "latitud": 4.7388977
+      },
+      {
+        "orden": 1,
+        "longitud": -74.08591369999999,
+        "latitud": 4.7398977
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.342,
+    "iri": 0.319,
+    "IRI_modificado": 4.737,
+    "az": 0.769,
+    "ax": 2.068,
+    "wx": 1.606,
+    "huecos": [
+      {
+        "latitud": 4.7388977,
+        "longitud": -74.0869137,
+        "magnitud": 4.247,
+        "velocidad": 0.018
+      },
+      {
+        "latitud": 4.7398977,
+        "longitud": -74.08591369999999,
+        "magnitud": 0.059,
+        "velocidad": 2.43
+      }
+    ]
+  },
+  {
+    "numero": 28,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.7392213,
+    "latitud_destino": 4.7402213,
+    "longitud_origen": -74.087235,
+    "longitud_destino": -74.086235,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.087235,
+        "latitud": 4.7392213
+      },
+      {
+        "orden": 1,
+        "longitud": -74.086235,
+        "latitud": 4.7402213
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 2.562,
+    "iri": 12.379,
+    "IRI_modificado": 4.03,
+    "az": 3.151,
+    "ax": 3.976,
+    "wx": 3.356,
+    "huecos": [
+      {
+        "latitud": 4.7392213,
+        "longitud": -74.087235,
+        "magnitud": 2.079,
+        "velocidad": 4.523
+      },
+      {
+        "latitud": 4.7402213,
+        "longitud": -74.086235,
+        "magnitud": 3.803,
+        "velocidad": 0.651
+      }
+    ]
+  },
+  {
+    "numero": 29,
+    "id": "seg_0_0_0",
+    "nombre": "Undefined",
+    "longitud": 100.0,
+    "tipo": "unknown",
+    "latitud_origen": 4.73954,
+    "latitud_destino": 4.74054,
+    "longitud_origen": -74.087568,
+    "longitud_destino": -74.086568,
+    "geometria": [
+      {
+        "orden": 0,
+        "longitud": -74.087568,
+        "latitud": 4.73954
+      },
+      {
+        "orden": 1,
+        "longitud": -74.086568,
+        "latitud": 4.74054
+      }
+    ],
+    "fecha": "2025-07-07T18:13:20",
+    "IQR": 1.57,
+    "iri": 0.008,
+    "IRI_modificado": 3.138,
+    "az": 1.356,
+    "ax": 3.308,
+    "wx": 2.46,
+    "huecos": [
+      {
+        "latitud": 4.73954,
+        "longitud": -74.087568,
+        "magnitud": 2.156,
+        "velocidad": 1.585
+      },
+      {
+        "latitud": 4.74054,
+        "longitud": -74.086568,
+        "magnitud": 4.939,
+        "velocidad": 2.703
+      }
+    ]
+  }
+]
