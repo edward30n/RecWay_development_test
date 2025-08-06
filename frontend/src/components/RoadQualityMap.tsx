@@ -45,12 +45,14 @@ const RoadQualityMap: React.FC<RoadQualityMapProps> = ({
   const mapInstanceRef = useRef<L.Map | null>(null);
   const layerGroupRef = useRef<L.LayerGroup | null>(null);
   const holesLayerGroupRef = useRef<L.LayerGroup | null>(null);
+  const currentTileLayerRef = useRef<L.TileLayer | null>(null); // Referencia para la capa de tiles actual
   const [roadData, setRoadData] = useState<RoadSegment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSegment, setSelectedSegment] = useState<any>(null);
   const [showModal, setShowModal] = useState(false);
   const [analysisMode, setAnalysisMode] = useState<'segments' | 'holes'>('segments'); // Nuevo estado para el modo de análisis
   const [holeVisualizationMode, setHoleVisualizationMode] = useState<'circles' | 'segments'>('circles'); // Modo de visualización de huecos
+  const [mapLayer, setMapLayer] = useState<'osm' | 'satellite' | 'terrain' | 'roads' | 'transport' | 'dark' | 'light'>('osm'); // Tipo de capa de mapa
   const [isFullscreen, setIsFullscreen] = useState(false); // Estado para pantalla completa
   const [holeStats, setHoleStats] = useState({
     total: 0,
@@ -73,6 +75,57 @@ const RoadQualityMap: React.FC<RoadQualityMapProps> = ({
       return nombre.join(' / ');
     }
     return nombre;
+  };
+
+  // Función para obtener la configuración de las capas de mapa
+  const getMapLayerConfig = (layerType: string) => {
+    const configs = {
+      osm: {
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attribution: '© OpenStreetMap contributors',
+        name: 'OpenStreetMap',
+        maxZoom: 19
+      },
+      satellite: {
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        attribution: '© Esri, Maxar, Earthstar Geographics',
+        name: 'Satélite',
+        maxZoom: 18
+      },
+      terrain: {
+        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        attribution: '© OpenTopoMap (CC-BY-SA)',
+        name: 'Topográfico',
+        maxZoom: 17
+      },
+      roads: {
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attribution: '© OpenStreetMap contributors',
+        name: 'Vías y Carreteras',
+        maxZoom: 19,
+        description: 'Mapa optimizado para visualizar vías y carreteras'
+      },
+      transport: {
+        url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+        attribution: '© OpenStreetMap contributors, Tiles courtesy of Humanitarian OpenStreetMap Team',
+        name: 'Transporte',
+        maxZoom: 18,
+        description: 'Mapa especializado en infraestructura de transporte'
+      },
+      dark: {
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        attribution: '© CARTO',
+        name: 'Oscuro',
+        maxZoom: 19
+      },
+      light: {
+        url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        attribution: '© CARTO',
+        name: 'Claro',
+        maxZoom: 19
+      }
+    };
+    return configs[layerType as keyof typeof configs] || configs.osm;
   };
 
   // Función para obtener color basado en magnitud del hueco
@@ -280,6 +333,31 @@ const RoadQualityMap: React.FC<RoadQualityMapProps> = ({
     });
 
     return grouped;
+  };
+
+  // Función para cambiar la capa de mapa
+  const changeMapLayer = (newLayerType: string) => {
+    if (!mapInstanceRef.current) return;
+    
+    // Remover la capa actual
+    if (currentTileLayerRef.current) {
+      mapInstanceRef.current.removeLayer(currentTileLayerRef.current);
+    }
+    
+    // Obtener configuración de la nueva capa
+    const layerConfig = getMapLayerConfig(newLayerType);
+    
+    // Crear y agregar la nueva capa
+    const newTileLayer = L.tileLayer(layerConfig.url, {
+      attribution: layerConfig.attribution,
+      maxZoom: layerConfig.maxZoom,
+      minZoom: 3
+    });
+    
+    newTileLayer.addTo(mapInstanceRef.current);
+    currentTileLayerRef.current = newTileLayer;
+    
+    setMapLayer(newLayerType as 'osm' | 'satellite' | 'terrain' | 'roads' | 'transport' | 'dark' | 'light');
   };
 
   // Función para manejar pantalla completa
@@ -580,12 +658,15 @@ const RoadQualityMap: React.FC<RoadQualityMapProps> = ({
     }).fitBounds(bounds, { padding: [50, 50] }); // Padding más generoso
     mapInstanceRef.current = map;
 
-    // Agregar capa de tiles con mejor calidad
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
-      maxZoom: 19,
+    // Agregar capa de tiles inicial
+    const initialLayerConfig = getMapLayerConfig(mapLayer);
+    const tileLayer = L.tileLayer(initialLayerConfig.url, {
+      attribution: initialLayerConfig.attribution,
+      maxZoom: initialLayerConfig.maxZoom,
       minZoom: 3
-    }).addTo(map);
+    });
+    tileLayer.addTo(map);
+    currentTileLayerRef.current = tileLayer;
 
     // Crear grupo de capas para los segmentos y huecos
     const layerGroup = L.layerGroup().addTo(map);
@@ -927,8 +1008,27 @@ const RoadQualityMap: React.FC<RoadQualityMapProps> = ({
               Análisis de Calidad de Carreteras
             </h3>
             
-            {/* Botón de pantalla completa */}
-            <button
+            <div className="flex items-center space-x-3">
+              {/* Selector de capas de mapa */}
+              <div className="relative">
+                <select
+                  value={mapLayer}
+                  onChange={(e) => changeMapLayer(e.target.value)}
+                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  title="Seleccionar tipo de mapa"
+                >
+                  <option value="osm">{getMapLayerConfig('osm').name}</option>
+                  <option value="satellite">{getMapLayerConfig('satellite').name}</option>
+                  <option value="terrain">{getMapLayerConfig('terrain').name}</option>
+                  <option value="roads">{getMapLayerConfig('roads').name}</option>
+                  <option value="transport">{getMapLayerConfig('transport').name}</option>
+                  <option value="dark">{getMapLayerConfig('dark').name}</option>
+                  <option value="light">{getMapLayerConfig('light').name}</option>
+                </select>
+              </div>
+              
+              {/* Botón de pantalla completa */}
+              <button
               onClick={toggleFullscreen}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 isFullscreen 
@@ -953,6 +1053,7 @@ const RoadQualityMap: React.FC<RoadQualityMapProps> = ({
                 </span>
               )}
             </button>
+            </div>
           </div>
         
         {/* Pestañas de modo de análisis */}
