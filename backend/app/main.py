@@ -1,12 +1,23 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
+import logging
 
 from app.api.auth_secure import auth_router
 from app.core.config import settings
 from app.db.session import get_db
-# Import all models to ensure they are registered with SQLAlchemy
-import app.models  # This will import all models
+import app.models
+from app.api.endpoints.upload import router as upload_router
+from app.api.endpoints.auto_processing import router as auto_processing_router
+from app.services.file_watcher import start_file_watcher, stop_file_watcher
+try:
+    from app.api.routes.manual_processing import router as manual_processing_router
+except ImportError:
+    manual_processing_router = None
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Create FastAPI application
 app = FastAPI(
@@ -29,6 +40,31 @@ app.add_middleware(
 
 # Include secure authentication endpoints
 app.include_router(auth_router)
+app.include_router(upload_router, prefix=settings.API_V1_STR + "/files", tags=["files"])
+app.include_router(auto_processing_router, prefix=settings.API_V1_STR + "/auto-process", tags=["auto-processing"])
+if manual_processing_router:
+    app.include_router(manual_processing_router, prefix=settings.API_V1_STR + "/manual-process", tags=["manual-processing"])
+
+# Eventos de aplicación
+@app.on_event("startup")
+async def startup_event():
+    """Eventos que se ejecutan al iniciar la aplicación"""
+    logger.info("Iniciando RecWay API...")
+    
+    # Iniciar file watcher para procesamiento automático
+    if start_file_watcher():
+        logger.info("✅ File Watcher iniciado correctamente")
+    else:
+        logger.warning("⚠️ No se pudo iniciar el File Watcher")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Eventos que se ejecutan al cerrar la aplicación"""
+    logger.info("Cerrando RecWay API...")
+    
+    # Detener file watcher
+    stop_file_watcher()
+    logger.info("✅ File Watcher detenido")
 
 # Countries endpoint (needed by frontend)
 @app.get("/api/v1/countries")
