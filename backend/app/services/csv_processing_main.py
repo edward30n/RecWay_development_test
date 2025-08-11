@@ -28,7 +28,7 @@ class DatosProcesamiento:
         self.longitud = None
         self.numero_grafo = None
         self.G_exist = False
-        self.carpeta_grafos = str(base_path / 'data' / 'grafos_archivos5')
+        self.carpeta_grafos = str(base_path / 'grafos_archivos5')
         self.L = 0.0003
         self.id_edge = None
         self.info_edge = None
